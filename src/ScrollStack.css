@@ -1,0 +1,140 @@
+.scroll-stack {
+  --stack-top: 14vh;
+  --stack-card-height: clamp(560px, 70vh, 760px);
+  --stack-peek: clamp(34px, 3.4vw, 54px);
+  position: relative;
+  min-height: 0;
+  padding-right: 30px;
+}
+
+.scroll-stack-scroller {
+  position: relative;
+  height: calc(var(--stack-card-height) + 216px);
+  overflow: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: none;
+}
+
+.scroll-stack-scroller::-webkit-scrollbar {
+  display: none;
+}
+
+.scroll-stack-stage {
+  position: sticky;
+  top: 0;
+  height: calc(var(--stack-card-height) + 216px);
+  padding: 0 4px;
+  isolation: isolate;
+}
+
+.scroll-stack-card-shell {
+  position: absolute;
+  right: 0;
+  left: 0;
+  top: 0;
+  height: var(--stack-card-height);
+  transform:
+    translate3d(0, var(--stack-y, var(--stack-initial-y)), 0)
+    scale(var(--stack-scale, 1))
+    rotate(var(--stack-rotate, 0deg));
+  transform-origin: center top;
+  opacity: var(--stack-opacity, 1);
+  transition:
+    opacity 120ms linear,
+    box-shadow 180ms ease;
+  will-change: transform, opacity;
+}
+
+.scroll-stack-card {
+  position: relative;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.025)),
+    #08090a;
+  box-shadow:
+    0 38px 120px rgba(0, 0, 0, 0.56),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+}
+
+.scroll-stack-spacer {
+  height: var(--stack-scroll-length, 208vh);
+}
+
+.scroll-stack-progress {
+  position: absolute;
+  top: 24px;
+  right: 8px;
+  bottom: 24px;
+  z-index: 20;
+  width: 4px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+  pointer-events: none;
+}
+
+.scroll-stack-progress span {
+  position: absolute;
+  top: calc(var(--stack-progress, 0) * (100% - 92px));
+  left: 50%;
+  width: 4px;
+  height: 92px;
+  transform: translateX(-50%);
+  border-radius: 999px;
+  background: rgba(239, 243, 246, 0.72);
+  box-shadow:
+    0 0 18px rgba(255, 255, 255, 0.18),
+    0 0 24px rgba(135, 213, 223, 0.16);
+}
+
+@media (max-width: 980px) {
+  .scroll-stack {
+    display: grid;
+    min-height: auto;
+    gap: 22px;
+    padding-right: 0;
+  }
+
+  .scroll-stack-scroller {
+    position: relative;
+    height: auto;
+    overflow: visible;
+  }
+
+  .scroll-stack-stage {
+    position: relative;
+    top: auto;
+    display: grid;
+    height: auto;
+    gap: 22px;
+    overflow: visible;
+  }
+
+  .scroll-stack-card-shell {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    left: auto;
+    height: auto;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+
+  .scroll-stack-card {
+    min-height: auto;
+  }
+
+  .scroll-stack-spacer {
+    display: none;
+  }
+
+  .scroll-stack-progress {
+    display: none;
+  }
+}
