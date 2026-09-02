@@ -200,8 +200,6 @@ main {
   object-fit: cover;
   object-position: center;
   filter: grayscale(0.02) saturate(1.04) brightness(1.08) contrast(1.06);
-  transform: rotate(-90deg) scale(1.88);
-  transform-origin: center;
 }
 
 .heroPoster {
@@ -1615,7 +1613,6 @@ button:focus-visible {
   .heroVideo {
     opacity: 0.5;
     filter: grayscale(0.04) saturate(0.98) brightness(0.92) contrast(1.05);
-    transform: rotate(-90deg) scale(1.75);
   }
 
   .heroMedia.is-video-active .heroPoster { opacity: 0; }

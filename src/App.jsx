@@ -323,8 +323,6 @@ function HeroMedia() {
     let inViewport = true;
     let disposed = false;
     let retryTimer = null;
-    let stalledChecks = 0;
-    let lastTime = -1;
 
     const shouldPlay = () => !reducedMotion.matches && !document.hidden && inViewport;
     const clearRetry = () => {
@@ -332,7 +330,7 @@ function HeroMedia() {
       window.clearTimeout(retryTimer);
       retryTimer = null;
     };
-    const scheduleRetry = (delay = 650) => {
+    const scheduleRetry = (delay = 900) => {
       if (disposed || retryTimer || !shouldPlay()) return;
       retryTimer = window.setTimeout(() => {
         retryTimer = null;
@@ -351,9 +349,10 @@ function HeroMedia() {
       video.playsInline = true;
       try {
         await video.play();
-        if (!disposed && !video.paused) setVideoActive(true);
+        if (!disposed && !video.paused && video.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA) {
+          setVideoActive(true);
+        }
       } catch {
-        if (!disposed) setVideoActive(false);
         scheduleRetry();
       }
     };
@@ -361,19 +360,20 @@ function HeroMedia() {
       if (!shouldPlay()) {
         clearRetry();
         video.pause();
-        setVideoActive(false);
         return;
       }
       attemptPlayback();
     };
     const handlePlaying = () => {
-      stalledChecks = 0;
-      lastTime = video.currentTime;
       setVideoActive(true);
     };
+    const handleFrame = () => {
+      if (video.currentTime > 0 && video.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA) {
+        setVideoActive(true);
+      }
+    };
     const handleInterruption = () => {
-      setVideoActive(false);
-      scheduleRetry(420);
+      scheduleRetry(900);
     };
     const handleError = () => {
       setVideoActive(false);
@@ -383,29 +383,6 @@ function HeroMedia() {
       inViewport = entry.isIntersecting;
       sync();
     }, { threshold: [0, 0.01] });
-
-    const watchdog = window.setInterval(() => {
-      if (!shouldPlay()) {
-        lastTime = video.currentTime;
-        stalledChecks = 0;
-        return;
-      }
-
-      const progressed = lastTime < 0 || Math.abs(video.currentTime - lastTime) > 0.08;
-      if (progressed && !video.paused && video.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA) {
-        stalledChecks = 0;
-        setVideoActive(true);
-      } else {
-        stalledChecks += 1;
-        setVideoActive(false);
-        attemptPlayback();
-        if (stalledChecks >= 3) {
-          stalledChecks = 0;
-          video.load();
-        }
-      }
-      lastTime = video.currentTime;
-    }, 1500);
 
     observer.observe(media || video);
     document.addEventListener('visibilitychange', sync);
@@ -417,6 +394,8 @@ function HeroMedia() {
     video.addEventListener('loadedmetadata', sync);
     video.addEventListener('canplay', sync);
     video.addEventListener('playing', handlePlaying);
+    video.addEventListener('timeupdate', handleFrame);
+    video.addEventListener('pause', handleInterruption);
     video.addEventListener('waiting', handleInterruption);
     video.addEventListener('stalled', handleInterruption);
     video.addEventListener('error', handleError);
@@ -424,7 +403,6 @@ function HeroMedia() {
     return () => {
       disposed = true;
       clearRetry();
-      window.clearInterval(watchdog);
       observer.disconnect();
       document.removeEventListener('visibilitychange', sync);
       reducedMotion.removeEventListener('change', sync);
@@ -435,6 +413,8 @@ function HeroMedia() {
       video.removeEventListener('loadedmetadata', sync);
       video.removeEventListener('canplay', sync);
       video.removeEventListener('playing', handlePlaying);
+      video.removeEventListener('timeupdate', handleFrame);
+      video.removeEventListener('pause', handleInterruption);
       video.removeEventListener('waiting', handleInterruption);
       video.removeEventListener('stalled', handleInterruption);
       video.removeEventListener('error', handleError);
@@ -447,12 +427,12 @@ function HeroMedia() {
       data-video-state={videoActive ? 'playing' : 'poster'}
       aria-hidden="true"
     >
-      <img className="heroPoster" src="/assets/hero-video-poster.webp" alt="" fetchPriority="high" />
+      <img className="heroPoster" src="/assets/hero-background-poster.webp" alt="" fetchPriority="high" />
       <video
         ref={videoRef}
         className={`heroVideo${videoActive ? ' is-ready' : ''}`}
-        src="/assets/hero-reference.mp4"
-        poster="/assets/hero-video-poster.webp"
+        src="/assets/hero-loop.webm"
+        poster="/assets/hero-background-poster.webp"
         autoPlay
         muted
         loop
