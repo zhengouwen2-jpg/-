@@ -7,10 +7,11 @@
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.13);
   background:
-    radial-gradient(circle at 12% 12%, rgba(255, 42, 25, 0.17), transparent 34rem),
-    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px) 0 0 / 96px 96px,
-    linear-gradient(90deg, rgba(255, 255, 255, 0.022) 1px, transparent 1px) 0 0 / 96px 96px,
-    #070809;
+    linear-gradient(145deg, rgba(255, 255, 255, 0.052), rgba(255, 255, 255, 0.014)),
+    rgba(5, 6, 7, 0.74);
+  box-shadow:
+    inset 1px 0 rgba(255, 42, 25, 0.16),
+    inset 0 1px rgba(255, 255, 255, 0.055);
 }
 
 .vacuumProjectHeader {

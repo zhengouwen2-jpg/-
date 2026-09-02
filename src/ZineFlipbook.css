@@ -14,26 +14,21 @@
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 8px;
   background:
-    radial-gradient(circle at 18% 26%, rgba(255, 42, 25, 0.2), transparent 30rem),
-    radial-gradient(circle at 78% 62%, rgba(135, 213, 223, 0.12), transparent 32rem),
-    linear-gradient(135deg, rgba(255, 255, 255, 0.04), transparent 38%),
-    rgba(255, 255, 255, 0.024);
+    linear-gradient(145deg, rgba(255, 255, 255, 0.046), rgba(255, 255, 255, 0.014)),
+    rgba(5, 6, 7, 0.72);
   box-shadow:
+    inset 1px 0 rgba(255, 42, 25, 0.14),
     inset 0 1px 0 rgba(255, 255, 255, 0.08),
     0 36px 110px rgba(0, 0, 0, 0.34);
 }
 
 .zineStage::before {
   position: absolute;
-  inset: 0;
+  inset: 9% auto 9% 0;
+  width: 1px;
   pointer-events: none;
   content: "";
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.036) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-  background-size: 86px 86px;
-  opacity: 0.44;
-  mask-image: radial-gradient(circle at 50% 42%, black, transparent 74%);
+  background: linear-gradient(180deg, transparent, rgba(255, 42, 25, 0.22) 30%, rgba(255, 42, 25, 0.12) 70%, transparent);
 }
 
 .zineBook {

@@ -1,8 +1,8 @@
 import React from 'react';
 import AccordionGallery from './AccordionGallery.jsx';
+import AmbientBackdrop from './AmbientBackdrop.jsx';
 import CircularGallery from './CircularGallery.jsx';
 import ClickSpark from './ClickSpark.jsx';
-import Grainient from './Grainient.jsx';
 import LineSidebar from './LineSidebar.jsx';
 import MagicBento, { MagicBentoSurface } from './MagicBento.jsx';
 import ProjectPassport from './ProjectPassport.jsx';
@@ -783,7 +783,7 @@ function App() {
       </section>
 
       <div className="afterHeroBackdrop">
-        <Grainient />
+        <AmbientBackdrop />
         <ProjectQuickScan />
         <section className="section about" id="about">
           <div className="sectionHeader">

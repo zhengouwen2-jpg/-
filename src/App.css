@@ -16,10 +16,7 @@
 body {
   margin: 0;
   min-width: 0;
-  background:
-    radial-gradient(circle at 18% 16%, rgba(103, 161, 171, 0.16), transparent 32rem),
-    radial-gradient(circle at 84% 62%, rgba(206, 169, 92, 0.11), transparent 34rem),
-    #050607;
+  background: #050607;
   color: #eff3f6;
 }
 
@@ -45,41 +42,111 @@ main {
   isolation: isolate;
 }
 
-.afterHeroBackdrop::before,
-.afterHeroBackdrop::after {
+.afterHeroBackdrop > :not(.ambientBackdrop) {
+  position: relative;
+  z-index: 1;
+}
+
+.ambientBackdrop {
   position: absolute;
   inset: 0;
-  z-index: -1;
+  z-index: 0;
+  overflow: hidden;
   pointer-events: none;
-  content: "";
 }
 
-.afterHeroBackdrop::before {
-  background:
-    linear-gradient(180deg, #050607 0, rgba(5, 6, 7, 0.72) 18%, rgba(5, 6, 7, 0.78) 72%, #050607 100%),
-    radial-gradient(circle at 18% 8%, rgba(255, 42, 25, 0.16), transparent 34rem),
-    radial-gradient(circle at 86% 48%, rgba(135, 213, 223, 0.08), transparent 38rem);
+.ambientBackdropViewport {
+  --ambient-red-strength: 0.1;
+  --ambient-cycle: 24s;
+  --ambient-drift-x: 5vw;
+  --ambient-drift-y: 2.5vh;
+  position: fixed;
+  inset: 0;
+  width: auto;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+  background: #050607;
+  contain: strict;
+  opacity: 0;
+  transition: opacity 720ms ease;
 }
 
-.afterHeroBackdrop::after {
+.ambientBackdrop.is-active .ambientBackdropViewport {
+  opacity: 1;
+}
+
+.ambientRibbon,
+.ambientTexture {
+  position: absolute;
+  pointer-events: none;
+}
+
+.ambientRibbon {
+  inset: -32%;
+  transform: translate3d(calc(var(--ambient-drift-x) * -1), calc(var(--ambient-drift-y) * -1), 0)
+    rotate(-4deg) scale(1.08);
+  will-change: transform;
+}
+
+.ambientRibbonRed {
+  background: linear-gradient(
+    112deg,
+    transparent 27%,
+    rgb(255 42 25 / 0.012) 38%,
+    rgb(255 42 25 / var(--ambient-red-strength)) 49%,
+    rgb(255 42 25 / 0.026) 59%,
+    transparent 70%
+  );
+  filter: blur(54px);
+  animation: ambientRibbonDrift var(--ambient-cycle) ease-in-out infinite alternate;
+}
+
+.ambientRibbonSilver {
+  background: linear-gradient(
+    112deg,
+    transparent 37%,
+    rgb(135 213 223 / 0.006) 44%,
+    rgb(215 231 236 / 0.035) 50%,
+    rgb(135 213 223 / 0.008) 56%,
+    transparent 63%
+  );
+  filter: blur(68px);
+  animation: ambientRibbonDrift var(--ambient-cycle) ease-in-out -5s infinite alternate-reverse;
+}
+
+.ambientTexture {
+  inset: 0;
+}
+
+.ambientGrid {
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-  background-size: 104px 104px;
-  opacity: 0.42;
+    linear-gradient(rgba(255, 255, 255, 0.026) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.022) 1px, transparent 1px);
+  background-size: 96px 96px;
+  opacity: 0.38;
   mask-image: linear-gradient(180deg, transparent 0, black 8%, black 92%, transparent 100%);
 }
 
-.grainientContainer {
-  position: absolute;
-  inset: 0;
-  z-index: -2;
-  width: 100%;
-  height: 100%;
-  min-height: 100%;
-  overflow: hidden;
-  opacity: 0.76;
-  filter: saturate(1.05) brightness(0.82) contrast(1.12);
+.ambientGrain {
+  background-image:
+    repeating-linear-gradient(17deg, rgb(255 255 255 / 0.018) 0 1px, transparent 1px 4px),
+    repeating-linear-gradient(103deg, rgb(0 0 0 / 0.035) 0 1px, transparent 1px 5px);
+  background-size: 7px 9px, 11px 8px;
+  mix-blend-mode: soft-light;
+  opacity: 0.28;
+}
+
+@keyframes ambientRibbonDrift {
+  from {
+    transform: translate3d(calc(var(--ambient-drift-x) * -1), calc(var(--ambient-drift-y) * -1), 0)
+      rotate(-4deg) scale(1.08);
+  }
+
+  to {
+    transform: translate3d(var(--ambient-drift-x), var(--ambient-drift-y), 0)
+      rotate(-1deg) scale(1.12);
+  }
 }
 
 .clickSparkCanvas {
@@ -164,8 +231,7 @@ main {
     linear-gradient(180deg, rgba(5, 6, 7, 0.08), #050607 98%);
 }
 
-.hero::after,
-.section::before {
+.hero::after {
   position: absolute;
   inset: 0;
   pointer-events: none;
@@ -870,9 +936,11 @@ h2 {
   gap: clamp(22px, 2.4vw, 38px);
   padding: clamp(28px, 3.4vw, 58px);
   background:
-    radial-gradient(circle at 14% 8%, rgba(255, 42, 25, 0.18), transparent 34rem),
-    radial-gradient(circle at 82% 52%, rgba(135, 213, 223, 0.08), transparent 38rem),
-    linear-gradient(145deg, rgba(255, 255, 255, 0.082), rgba(255, 255, 255, 0.024));
+    linear-gradient(145deg, rgba(255, 255, 255, 0.058), rgba(255, 255, 255, 0.018)),
+    rgba(5, 6, 7, 0.72);
+  box-shadow:
+    inset 1px 0 rgba(255, 42, 25, 0.16),
+    inset 0 1px rgba(255, 255, 255, 0.055);
 }
 
 .fotileProjectHeader {
@@ -951,12 +1019,11 @@ h2 {
 
 .fotileProjectGallery::before {
   position: absolute;
-  inset: -20% 8% auto;
-  height: 42%;
+  inset: 8% auto 8% 0;
+  width: 1px;
   pointer-events: none;
   content: "";
-  background: radial-gradient(circle, rgba(255, 42, 25, 0.16), transparent 68%);
-  filter: blur(36px);
+  background: linear-gradient(180deg, transparent, rgba(255, 42, 25, 0.24) 28%, rgba(255, 42, 25, 0.14) 72%, transparent);
 }
 
 .fotileLineSidebar {
@@ -1008,9 +1075,11 @@ h2 {
   gap: clamp(28px, 3vw, 48px);
   padding: clamp(28px, 3.4vw, 58px);
   background:
-    radial-gradient(circle at 16% 12%, rgba(255, 42, 25, 0.16), transparent 32rem),
-    radial-gradient(circle at 78% 44%, rgba(135, 213, 223, 0.1), transparent 36rem),
-    linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.024));
+    linear-gradient(145deg, rgba(255, 255, 255, 0.056), rgba(255, 255, 255, 0.018)),
+    rgba(5, 6, 7, 0.72);
+  box-shadow:
+    inset 1px 0 rgba(255, 42, 25, 0.15),
+    inset 0 1px rgba(255, 255, 255, 0.055);
 }
 
 .zineProjectHeader {
@@ -1094,32 +1163,27 @@ h2 {
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 8px;
   background:
-    radial-gradient(circle at 20% 16%, rgba(255, 42, 25, 0.14), transparent 34rem),
-    radial-gradient(circle at 78% 58%, rgba(135, 213, 223, 0.08), transparent 30rem),
-    rgba(255, 255, 255, 0.026);
+    linear-gradient(145deg, rgba(255, 255, 255, 0.046), rgba(255, 255, 255, 0.014)),
+    rgba(5, 6, 7, 0.7);
   box-shadow:
+    inset 1px 0 rgba(255, 42, 25, 0.14),
     inset 0 1px 0 rgba(255, 255, 255, 0.08),
     0 32px 110px rgba(0, 0, 0, 0.3);
 }
 
 .internshipGalleryFrameSecondary {
   background:
-    radial-gradient(circle at 18% 34%, rgba(135, 213, 223, 0.1), transparent 30rem),
-    radial-gradient(circle at 82% 22%, rgba(255, 42, 25, 0.12), transparent 34rem),
-    rgba(255, 255, 255, 0.024);
+    linear-gradient(145deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.012)),
+    rgba(5, 6, 7, 0.72);
 }
 
 .internshipGalleryFrame::before {
   position: absolute;
-  inset: 0;
+  inset: 9% auto 9% 0;
+  width: 1px;
   pointer-events: none;
   content: "";
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.028) 1px, transparent 1px);
-  background-size: 82px 82px;
-  mask-image: radial-gradient(circle at 50% 50%, black, transparent 74%);
-  opacity: 0.48;
+  background: linear-gradient(180deg, transparent, rgba(255, 42, 25, 0.22) 30%, rgba(255, 42, 25, 0.12) 70%, transparent);
 }
 
 .zineSection {
@@ -1453,6 +1517,26 @@ button:focus-visible {
 }
 
 @media (max-width: 620px) {
+  .ambientBackdropViewport {
+    --ambient-red-strength: 0.06;
+    --ambient-cycle: 32s;
+    --ambient-drift-x: 3vw;
+    --ambient-drift-y: 1.5vh;
+  }
+
+  .ambientRibbonRed {
+    filter: blur(46px);
+  }
+
+  .ambientRibbonSilver {
+    filter: blur(58px);
+  }
+
+  .ambientGrid {
+    background-size: 72px 72px;
+    opacity: 0.32;
+  }
+
   .contactFinal {
     min-height: 100svh;
     padding: 104px 0 26px;
@@ -1802,6 +1886,15 @@ button:focus-visible {
 
   .heroVideo {
     display: none;
+  }
+
+  .ambientRibbon {
+    animation: none !important;
+    transform: translate3d(0, 0, 0) rotate(-2deg) scale(1.1);
+  }
+
+  .ambientBackdropViewport {
+    transition: none;
   }
 
   .textPressureChar,
