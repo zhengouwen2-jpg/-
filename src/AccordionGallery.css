@@ -1,0 +1,122 @@
+.accordionGallery {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: var(--ag-height);
+  min-height: 420px;
+  gap: var(--ag-gap);
+}
+
+.agPanel {
+  position: relative;
+  flex: 1 1 0;
+  min-width: 82px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: var(--ag-radius);
+  background: #070809;
+  box-shadow:
+    0 28px 86px rgba(0, 0, 0, 0.34),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+  outline: 0;
+  will-change: flex-grow, filter, transform, opacity;
+}
+
+.agPanel:focus-visible {
+  border-color: rgba(255, 255, 255, 0.72);
+  box-shadow:
+    0 0 0 2px rgba(255, 42, 25, 0.38),
+    0 28px 86px rgba(0, 0, 0, 0.34);
+}
+
+.agPanelMedia,
+.agPanelShade {
+  position: absolute;
+  inset: 0;
+}
+
+.agPanelMedia {
+  width: 100%;
+  height: 100%;
+  will-change: transform;
+}
+
+.agPanelMedia img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.agPanel.isActive .agPanelMedia img {
+  object-fit: contain;
+  background: #f4f4f2;
+}
+
+.agPanelShade {
+  background:
+    linear-gradient(180deg, rgba(5, 6, 7, 0.08), rgba(5, 6, 7, 0.22) 42%, rgba(5, 6, 7, 0.78)),
+    linear-gradient(90deg, rgba(5, 6, 7, 0.38), transparent 38%, rgba(5, 6, 7, 0.24));
+  opacity: 0.76;
+  transition: opacity 260ms ease;
+}
+
+.agPanel.isActive .agPanelShade {
+  opacity: 0.16;
+}
+
+.agPanelLabel {
+  position: absolute;
+  left: clamp(16px, 2vw, 28px);
+  bottom: clamp(16px, 2vw, 28px);
+  z-index: 2;
+  display: grid;
+  gap: 8px;
+  max-width: min(340px, calc(100% - 32px));
+  color: #fff;
+  text-shadow: 0 8px 28px rgba(0, 0, 0, 0.46);
+}
+
+.agPanelLabel::before {
+  width: 42px;
+  height: 3px;
+  content: "";
+  background: var(--ag-accent);
+}
+
+.agPanelLabel span {
+  color: rgba(255, 255, 255, 0.66);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+}
+
+.agPanelLabel strong {
+  font-size: clamp(18px, 2vw, 30px);
+  line-height: 1.05;
+  white-space: nowrap;
+}
+
+@media (max-width: 700px) {
+  .accordionGallery {
+    flex-direction: column;
+    height: auto;
+    min-height: 0;
+  }
+
+  .agPanel {
+    flex: none !important;
+    min-height: 220px;
+    transform: none !important;
+  }
+
+  .agPanelMedia,
+  .agPanelShade {
+    position: absolute;
+  }
+
+  .agPanelLabel strong {
+    white-space: normal;
+  }
+}

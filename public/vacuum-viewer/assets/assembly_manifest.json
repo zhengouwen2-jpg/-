@@ -1,0 +1,698 @@
+{
+  "source": "D:\\载具\\吸尘器爆炸动画\\source_model\\吸尘器最终版.3dm",
+  "sourceSha256": "EB465D5AD324F367489E0C0DCF51D77135BF7A2474DC6D8646D82436549DE021",
+  "units": "millimeters",
+  "coordinateConvention": {
+    "up": "+Z",
+    "front": "-Y"
+  },
+  "sourceBoundsMm": {
+    "min": [
+      -2.747501729,
+      -12.909359984,
+      -68.468556202
+    ],
+    "max": [
+      23.582297182,
+      12.909333702,
+      32.380202692
+    ],
+    "size": [
+      26.329798911,
+      25.818693686,
+      100.848758895
+    ],
+    "center": [
+      10.417397726,
+      -1.3141e-05,
+      -18.044176755
+    ]
+  },
+  "selection": {
+    "mainBrepCount": 155,
+    "closedSolids": 138,
+    "openBreps": 17,
+    "brepFaces": 4089,
+    "excludedAccessoryBreps": [
+      118,
+      119,
+      120,
+      121,
+      122,
+      123,
+      124,
+      125,
+      126,
+      127,
+      128,
+      129,
+      130,
+      131,
+      132,
+      133,
+      134,
+      135,
+      136,
+      137,
+      138,
+      140,
+      141,
+      146
+    ],
+    "excludedNonBreps": [
+      0,
+      41,
+      51,
+      60,
+      61,
+      64,
+      65,
+      66,
+      139,
+      142,
+      143,
+      147,
+      149,
+      156,
+      163
+    ]
+  },
+  "animation": {
+    "durationSeconds": 12,
+    "timeline": {
+      "assembledHold": [
+        0,
+        1
+      ],
+      "explode": [
+        1,
+        5
+      ],
+      "explodedHold": [
+        5,
+        7
+      ],
+      "assemble": [
+        7,
+        11
+      ],
+      "finalHold": [
+        11,
+        12
+      ]
+    }
+  },
+  "materials": {
+    "smoke_clear": {
+      "color": [
+        121,
+        134,
+        145,
+        86
+      ],
+      "metallic": 0.0,
+      "roughness": 0.18,
+      "alpha_mode": "BLEND",
+      "double_sided": true
+    },
+    "cool_silver": {
+      "color": [
+        208,
+        214,
+        219,
+        255
+      ],
+      "metallic": 0.72,
+      "roughness": 0.27
+    },
+    "filter_paper": {
+      "color": [
+        234,
+        235,
+        231,
+        255
+      ],
+      "metallic": 0.0,
+      "roughness": 0.83
+    },
+    "graphite_seal": {
+      "color": [
+        38,
+        43,
+        48,
+        255
+      ],
+      "metallic": 0.08,
+      "roughness": 0.52
+    },
+    "impeller_metal": {
+      "color": [
+        102,
+        112,
+        120,
+        255
+      ],
+      "metallic": 0.78,
+      "roughness": 0.25
+    },
+    "motor_metal": {
+      "color": [
+        146,
+        151,
+        154,
+        255
+      ],
+      "metallic": 0.76,
+      "roughness": 0.31
+    },
+    "pcb_green": {
+      "color": [
+        54,
+        132,
+        101,
+        255
+      ],
+      "metallic": 0.08,
+      "roughness": 0.43
+    },
+    "control_chrome": {
+      "color": [
+        204,
+        210,
+        214,
+        255
+      ],
+      "metallic": 0.92,
+      "roughness": 0.16
+    },
+    "battery_warm_gray": {
+      "color": [
+        123,
+        119,
+        113,
+        255
+      ],
+      "metallic": 0.2,
+      "roughness": 0.5
+    },
+    "pearl_white": {
+      "color": [
+        244,
+        243,
+        240,
+        255
+      ],
+      "metallic": 0.05,
+      "roughness": 0.34
+    }
+  },
+  "components": [
+    {
+      "id": "transparent_nozzle",
+      "name": "透明吸嘴",
+      "sourceIndices": [
+        49,
+        117
+      ],
+      "material": "smoke_clear",
+      "offsetMm": [
+        0.0,
+        0.0,
+        46.0
+      ],
+      "progressRange": [
+        0.0,
+        0.18
+      ],
+      "boundsMm": {
+        "min": [
+          -11.063725,
+          -10.594694,
+          15.704777
+        ],
+        "max": [
+          11.047229,
+          10.585533,
+          50.416094
+        ]
+      },
+      "vertices": 11199,
+      "triangles": 13451
+    },
+    {
+      "id": "separator_grid",
+      "name": "分离栅格",
+      "sourceIndices": [
+        44,
+        45,
+        46,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114,
+        115,
+        116,
+        144
+      ],
+      "material": "cool_silver",
+      "offsetMm": [
+        0.0,
+        0.0,
+        30.0
+      ],
+      "progressRange": [
+        0.1,
+        0.32
+      ],
+      "boundsMm": {
+        "min": [
+          -9.207874,
+          -8.725478,
+          18.871803
+        ],
+        "max": [
+          9.191344,
+          8.725504,
+          34.885453
+        ]
+      },
+      "vertices": 7064,
+      "triangles": 8182
+    },
+    {
+      "id": "filter_core",
+      "name": "滤芯",
+      "sourceIndices": [
+        62,
+        63
+      ],
+      "material": "filter_paper",
+      "offsetMm": [
+        0.0,
+        0.0,
+        18.0
+      ],
+      "progressRange": [
+        0.2,
+        0.42
+      ],
+      "boundsMm": {
+        "min": [
+          -8.410122,
+          -6.774161,
+          0.779757
+        ],
+        "max": [
+          8.661412,
+          6.774161,
+          11.28919
+        ]
+      },
+      "vertices": 2534,
+      "triangles": 2532
+    },
+    {
+      "id": "filter_seals",
+      "name": "密封圈组",
+      "sourceIndices": [
+        47,
+        50,
+        148,
+        192,
+        193
+      ],
+      "material": "graphite_seal",
+      "offsetMm": [
+        0.0,
+        0.0,
+        10.0
+      ],
+      "progressRange": [
+        0.28,
+        0.48
+      ],
+      "boundsMm": {
+        "min": [
+          -10.539669,
+          -10.070155,
+          10.670099
+        ],
+        "max": [
+          10.523139,
+          10.070182,
+          19.349896
+        ]
+      },
+      "vertices": 44970,
+      "triangles": 50009
+    },
+    {
+      "id": "impeller",
+      "name": "叶轮",
+      "sourceIndices": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        42,
+        43
+      ],
+      "material": "impeller_metal",
+      "offsetMm": [
+        0.0,
+        0.0,
+        3.0
+      ],
+      "progressRange": [
+        0.45,
+        0.65
+      ],
+      "boundsMm": {
+        "min": [
+          -10.27981,
+          -9.453658,
+          1.273543
+        ],
+        "max": [
+          9.355983,
+          9.45366,
+          10.551754
+        ]
+      },
+      "vertices": 44140,
+      "triangles": 49263
+    },
+    {
+      "id": "motor",
+      "name": "电机与支架",
+      "sourceIndices": [
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        151,
+        154,
+        155,
+        157,
+        158,
+        159,
+        160,
+        161,
+        162,
+        164,
+        166,
+        167,
+        168,
+        169,
+        170
+      ],
+      "material": "motor_metal",
+      "offsetMm": [
+        0.0,
+        0.0,
+        6.0
+      ],
+      "progressRange": [
+        0.5,
+        0.7
+      ],
+      "boundsMm": {
+        "min": [
+          -10.212308,
+          -9.757117,
+          -19.459295
+        ],
+        "max": [
+          10.195744,
+          9.757143,
+          5.494834
+        ]
+      },
+      "vertices": 15015,
+      "triangles": 22121
+    },
+    {
+      "id": "pcb",
+      "name": "控制电路板",
+      "sourceIndices": [
+        152,
+        153,
+        171,
+        172,
+        173,
+        174,
+        175,
+        176,
+        177,
+        178,
+        181,
+        182,
+        183,
+        184,
+        185,
+        186,
+        187
+      ],
+      "material": "pcb_green",
+      "offsetMm": [
+        0.0,
+        -26.0,
+        0.0
+      ],
+      "progressRange": [
+        0.58,
+        0.8
+      ],
+      "boundsMm": {
+        "min": [
+          -5.949672,
+          -11.171492,
+          -39.723996
+        ],
+        "max": [
+          5.834199,
+          -6.730469,
+          -15.048204
+        ]
+      },
+      "vertices": 31300,
+      "triangles": 44682
+    },
+    {
+      "id": "controls",
+      "name": "按键组件",
+      "sourceIndices": [
+        150,
+        180,
+        190,
+        191
+      ],
+      "material": "control_chrome",
+      "offsetMm": [
+        0.0,
+        -34.0,
+        0.0
+      ],
+      "progressRange": [
+        0.64,
+        0.84
+      ],
+      "boundsMm": {
+        "min": [
+          -3.681177,
+          -11.726891,
+          -23.138082
+        ],
+        "max": [
+          3.642884,
+          -9.865744,
+          -10.468498
+        ]
+      },
+      "vertices": 5808,
+      "triangles": 7400
+    },
+    {
+      "id": "battery",
+      "name": "电池架",
+      "sourceIndices": [
+        165,
+        179
+      ],
+      "material": "battery_warm_gray",
+      "offsetMm": [
+        0.0,
+        0.0,
+        -18.0
+      ],
+      "progressRange": [
+        0.7,
+        0.92
+      ],
+      "boundsMm": {
+        "min": [
+          -9.261851,
+          -7.296054,
+          -39.938707
+        ],
+        "max": [
+          9.24532,
+          8.081386,
+          -9.976913
+        ]
+      },
+      "vertices": 4617,
+      "triangles": 5342
+    },
+    {
+      "id": "bottom_cap",
+      "name": "底盖",
+      "sourceIndices": [
+        145,
+        188,
+        189
+      ],
+      "material": "pearl_white",
+      "offsetMm": [
+        0.0,
+        0.0,
+        -34.0
+      ],
+      "progressRange": [
+        0.78,
+        1.0
+      ],
+      "boundsMm": {
+        "min": [
+          -11.042698,
+          -10.550913,
+          -50.402723
+        ],
+        "max": [
+          11.025784,
+          10.550944,
+          -40.672502
+        ]
+      },
+      "vertices": 17213,
+      "triangles": 21410
+    },
+    {
+      "id": "body_shell",
+      "name": "左右外壳",
+      "sourceIndices": [
+        48
+      ],
+      "material": "pearl_white",
+      "offsetMm": [
+        0.0,
+        28.0,
+        0.0
+      ],
+      "progressRange": [
+        0.36,
+        0.58
+      ],
+      "boundsMm": {
+        "min": [
+          -11.264421,
+          -10.825173,
+          -40.672502
+        ],
+        "max": [
+          11.247891,
+          10.825199,
+          15.664714
+        ]
+      },
+      "vertices": 7056,
+      "triangles": 8708,
+      "split": "y"
+    }
+  ],
+  "output": "D:\\载具\\吸尘器爆炸动画\\assets\\vacuum_main.glb"
+}

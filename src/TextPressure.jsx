@@ -24,6 +24,7 @@ function TextPressure({ text, className = '', textColor = '#ff2a19', autoSweep =
     duration: 2600,
     completed: false,
   });
+  const visibilityRef = useRef({ inViewport: true, pageVisible: !document.hidden });
 
   const chars = useMemo(() => text.split(''), [text]);
 
@@ -36,14 +37,17 @@ function TextPressure({ text, className = '', textColor = '#ff2a19', autoSweep =
   }, []);
 
   useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined;
     primeCursor();
 
     const handleMove = (event) => {
+      if (!visibilityRef.current.inViewport || !visibilityRef.current.pageVisible) return;
       sweepRef.current.active = false;
       cursorRef.current = { x: event.clientX, y: event.clientY };
     };
 
     const handleTouch = (event) => {
+      if (!visibilityRef.current.inViewport || !visibilityRef.current.pageVisible) return;
       sweepRef.current.active = false;
       const touch = event.touches[0];
       if (touch) cursorRef.current = { x: touch.clientX, y: touch.clientY };
@@ -74,7 +78,10 @@ function TextPressure({ text, className = '', textColor = '#ff2a19', autoSweep =
   }, [autoSweep, primeCursor]);
 
   useEffect(() => {
-    let frameId;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined;
+    const title = titleRef.current;
+    if (!title) return undefined;
+    let frameId = 0;
 
     const animate = () => {
       const now = performance.now();
@@ -127,12 +134,46 @@ function TextPressure({ text, className = '', textColor = '#ff2a19', autoSweep =
         });
       }
 
+      frameId = visibilityRef.current.inViewport && visibilityRef.current.pageVisible
+        ? requestAnimationFrame(animate)
+        : 0;
+    };
+
+    const start = () => {
+      if (!visibilityRef.current.inViewport || !visibilityRef.current.pageVisible || frameId) return;
       frameId = requestAnimationFrame(animate);
     };
 
-    animate();
-    return () => cancelAnimationFrame(frameId);
-  }, [autoSweep]);
+    const stop = () => {
+      if (frameId) cancelAnimationFrame(frameId);
+      frameId = 0;
+    };
+
+    const observer = new IntersectionObserver(([entry]) => {
+      visibilityRef.current.inViewport = entry.isIntersecting;
+      if (entry.isIntersecting) {
+        primeCursor();
+        start();
+      } else {
+        stop();
+      }
+    }, { threshold: 0.01 });
+
+    const handleVisibility = () => {
+      visibilityRef.current.pageVisible = !document.hidden;
+      if (visibilityRef.current.pageVisible) start();
+      else stop();
+    };
+
+    observer.observe(title);
+    document.addEventListener('visibilitychange', handleVisibility);
+    start();
+    return () => {
+      observer.disconnect();
+      document.removeEventListener('visibilitychange', handleVisibility);
+      stop();
+    };
+  }, [autoSweep, primeCursor]);
 
   return (
     <span

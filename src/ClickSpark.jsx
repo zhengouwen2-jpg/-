@@ -11,6 +11,7 @@ function ClickSpark({
 }) {
   const canvasRef = useRef(null);
   const sparksRef = useRef([]);
+  const frameRef = useRef(0);
 
   const ease = useCallback(
     (t) => {
@@ -46,11 +47,10 @@ function ClickSpark({
     const canvas = canvasRef.current;
     if (!canvas) return undefined;
     const ctx = canvas.getContext('2d');
-    let frameId;
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
     const draw = (timestamp) => {
       ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
-
       sparksRef.current = sparksRef.current.filter((spark) => {
         const elapsed = timestamp - spark.startTime;
         if (elapsed >= duration) return false;
@@ -77,16 +77,15 @@ function ClickSpark({
 
         return true;
       });
-
-      frameId = requestAnimationFrame(draw);
+      if (sparksRef.current.length && !document.hidden) {
+        frameRef.current = requestAnimationFrame(draw);
+      } else {
+        frameRef.current = 0;
+      }
     };
 
-    frameId = requestAnimationFrame(draw);
-    return () => cancelAnimationFrame(frameId);
-  }, [duration, ease, extraScale, sparkColor, sparkRadius, sparkSize]);
-
-  useEffect(() => {
     const handleClick = (event) => {
+      if (reducedMotion.matches || document.hidden) return;
       const now = performance.now();
       const newSparks = Array.from({ length: sparkCount }, (_, index) => ({
         x: event.clientX,
@@ -96,11 +95,27 @@ function ClickSpark({
       }));
 
       sparksRef.current.push(...newSparks);
+      if (!frameRef.current) frameRef.current = requestAnimationFrame(draw);
+    };
+
+    const handleVisibility = () => {
+      if (!document.hidden || !frameRef.current) return;
+      cancelAnimationFrame(frameRef.current);
+      frameRef.current = 0;
+      sparksRef.current = [];
+      ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
     };
 
     window.addEventListener('click', handleClick);
-    return () => window.removeEventListener('click', handleClick);
-  }, [sparkCount]);
+    document.addEventListener('visibilitychange', handleVisibility);
+    return () => {
+      window.removeEventListener('click', handleClick);
+      document.removeEventListener('visibilitychange', handleVisibility);
+      if (frameRef.current) cancelAnimationFrame(frameRef.current);
+      frameRef.current = 0;
+      sparksRef.current = [];
+    };
+  }, [duration, ease, extraScale, sparkColor, sparkCount, sparkRadius, sparkSize]);
 
   return <canvas className="clickSparkCanvas" ref={canvasRef} aria-hidden="true" />;
 }

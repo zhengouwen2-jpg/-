@@ -1,8 +1,16 @@
 {
-  "buildCommand": "npm run build",
+  "buildCommand": "pnpm run build",
   "outputDirectory": "dist",
   "framework": "vite",
   "rewrites": [
+    {
+      "source": "/vacuum-viewer",
+      "destination": "/vacuum-viewer/index.html"
+    },
+    {
+      "source": "/vacuum-viewer/",
+      "destination": "/vacuum-viewer/index.html"
+    },
     {
       "source": "/(.*)",
       "destination": "/index.html"

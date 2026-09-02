@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0b0e12" />
+    <title>Owen Design - Immersive Wearable</title>
+    <link rel="stylesheet" href="/wearable-viewer.css" />
+  </head>
+  <body>
+    <main class="viewerShell">
+      <header class="viewerHeader">
+        <a class="viewerBrand" href="/" aria-label="返回作品集首页">
+          <span>OWEN</span>
+          <small>PRODUCT DESIGN</small>
+        </a>
+        <p class="viewerKicker">CONCEPT / 01</p>
+        <div class="viewerStatus"><i></i> INTERACTIVE MODEL</div>
+      </header>
+
+      <section class="viewerStage" aria-label="智能穿戴设备三维展示">
+        <div id="three-canvas" class="threeCanvas"></div>
+        <div class="stageVignette"></div>
+        <aside class="modelInfo">
+          <p>IMMERSIVE WEARABLE</p>
+          <h1>VISION<br />SHELL</h1>
+          <span>Conceptual mixed-reality wearable</span>
+        </aside>
+        <div class="stageBottom">
+          <div class="modelMeta">
+            <span>01</span>
+            <p>Dual-side hinge<br />Soft-contact inner shell</p>
+          </div>
+          <p class="dragHint">DRAG TO ORBIT <b>+</b> SCROLL TO ZOOM</p>
+          <div class="modelMeta right">
+            <span>360&deg;</span>
+            <p>Procedural<br />Three.js model</p>
+          </div>
+        </div>
+      </section>
+
+      <footer class="viewerControls" aria-label="模型控制">
+        <button id="toggle-rotation" type="button" aria-pressed="true">暂停转台</button>
+        <button id="reset-view" type="button">重置视角</button>
+        <span id="view-angle">FRONT / 000&deg;</span>
+      </footer>
+    </main>
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://cdn.jsdelivr.net/npm/three@0.185.1/build/three.module.js"
+        }
+      }
+    </script>
+    <script type="module" src="/wearable-viewer.js"></script>
+  </body>
+</html>

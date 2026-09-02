@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#070809">
+  <title>手持吸尘器结构设计｜Owen Design</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script type="importmap">
+    {"imports":{"three":"./vendor/three.module.js"}}
+  </script>
+</head>
+<body>
+  <main id="app" aria-label="手持吸尘器结构交互展示">
+    <canvas id="viewer" aria-label="手持吸尘器三维产品模型"></canvas>
+    <div id="labels" class="labels" aria-hidden="true"></div>
+
+    <header class="topbar">
+      <div class="identity">
+        <span class="identity-mark"></span>
+        <div>
+          <p>PROJECT 02 / PRODUCT STRUCTURE</p>
+          <h1>手持吸尘器结构设计</h1>
+        </div>
+      </div>
+      <div class="topbar-actions">
+        <div class="status"><span id="statusDot"></span><span id="statusText">正在载入模型</span></div>
+        <button id="partsButton" class="topbar-button parts-button" type="button" aria-label="打开装配树" title="打开装配树">☷</button>
+        <button id="fullscreenButton" class="topbar-button" type="button" aria-label="全屏查看" title="全屏查看">⛶</button>
+      </div>
+    </header>
+
+    <aside class="scenes-panel" aria-label="适用场景">
+      <div class="scenes-heading">
+        <span>适用场景</span>
+        <small>USE CASES</small>
+      </div>
+      <div id="scenesList" class="scenes-list" role="list">
+        <button class="scene-card active" type="button" data-scene="keyboard" aria-pressed="true">
+          <img src="./assets/scene_keyboard.jpg" alt="手持吸尘器清洁键盘缝隙" decoding="async">
+          <span class="scene-shade"></span>
+          <span class="scene-copy">
+            <span class="scene-meta"><i>01</i><small>KEYBOARD DETAIL</small></span>
+            <strong>键盘缝隙</strong>
+            <em>窄口吸头深入键帽间隙，处理细小颗粒。</em>
+          </span>
+        </button>
+        <button class="scene-card" type="button" data-scene="car" aria-pressed="false">
+          <img src="./assets/scene_car.jpg" alt="手持吸尘器清洁车内出风口" loading="lazy" decoding="async">
+          <span class="scene-shade"></span>
+          <span class="scene-copy">
+            <span class="scene-meta"><i>02</i><small>IN-CAR CLEANING</small></span>
+            <strong>车内风口</strong>
+            <em>紧凑机身应对出风口与车内狭窄区域。</em>
+          </span>
+        </button>
+        <button class="scene-card" type="button" data-scene="desktop" aria-pressed="false">
+          <img src="./assets/scene_desktop.jpg" alt="手持吸尘器放置于日常桌面" loading="lazy" decoding="async">
+          <span class="scene-shade"></span>
+          <span class="scene-copy">
+            <span class="scene-meta"><i>03</i><small>DESKTOP READY</small></span>
+            <strong>桌面随取</strong>
+            <em>轻巧机身随取随用，完成日常碎屑清洁。</em>
+          </span>
+        </button>
+      </div>
+    </aside>
+
+    <button id="partsScrim" class="parts-scrim" type="button" aria-label="关闭装配树"></button>
+    <aside class="parts-panel" aria-label="装配树">
+      <div class="panel-heading">
+        <span>装配树</span>
+        <span id="partCount">11 PARTS</span>
+        <button id="partsCloseButton" class="panel-close" type="button" aria-label="关闭装配树" title="关闭装配树">×</button>
+      </div>
+      <div id="partsList" class="parts-list"></div>
+      <div class="selection-readout">
+        <span>当前零件</span>
+        <strong id="selectedName">整机</strong>
+      </div>
+    </aside>
+
+    <section class="controls" aria-label="动画控制">
+      <div class="transport">
+        <button id="playButton" class="icon-button primary" type="button" aria-label="播放" title="播放或暂停"><span id="playIcon">▶</span></button>
+        <button id="resetButton" class="icon-button" type="button" aria-label="重置" title="重置装配状态">↺</button>
+      </div>
+
+      <div class="progress-control">
+        <div class="progress-meta">
+          <label for="progressSlider">爆炸进度</label>
+          <output id="progressValue" for="progressSlider">0%</output>
+        </div>
+        <input id="progressSlider" type="range" min="0" max="1000" value="0" step="1">
+      </div>
+
+      <div class="control-group zoom-group" aria-label="模型缩放">
+        <span class="control-label">缩放</span>
+        <div class="segmented compact" id="zoomControl">
+          <button id="zoomOutButton" type="button" aria-label="缩小模型" title="缩小模型">−</button>
+          <button id="zoomInButton" type="button" aria-label="放大模型" title="放大模型">＋</button>
+        </div>
+      </div>
+
+      <div class="control-group speed-group advanced-control" aria-label="播放速度">
+        <span class="control-label">速度</span>
+        <div class="segmented" id="speedControl">
+          <button type="button" data-speed="0.5">0.5×</button>
+          <button type="button" data-speed="1" class="active">1×</button>
+          <button type="button" data-speed="1.5">1.5×</button>
+        </div>
+      </div>
+
+      <div class="control-group view-group" aria-label="镜头视角">
+        <span class="control-label">视角</span>
+        <div class="segmented" id="viewControl">
+          <button type="button" data-view="threeq" class="active">三分之四</button>
+          <button type="button" data-view="front">正面</button>
+          <button type="button" data-view="side">侧面</button>
+          <button type="button" data-view="top">顶部</button>
+        </div>
+      </div>
+
+      <div class="toggles">
+        <label class="toggle advanced-control"><input id="shellToggle" type="checkbox"><span></span><b>外壳透明</b></label>
+        <label class="toggle"><input id="labelToggle" type="checkbox" checked><span></span><b>零件标签</b></label>
+        <label class="toggle advanced-control"><input id="rotateToggle" type="checkbox"><span></span><b>自动旋转</b></label>
+      </div>
+
+      <button id="moreButton" class="more-button" type="button" aria-expanded="false">更多</button>
+    </section>
+
+    <div class="loading" id="loading">
+      <div class="loading-line"><span id="loadingBar"></span></div>
+      <p>正在建立装配关系</p>
+    </div>
+  </main>
+
+  <script type="module" src="./app.js"></script>
+</body>
+</html>

@@ -1,0 +1,1090 @@
+.wearableProject {
+  --wearable-blue: #8fdcff;
+  --wearable-blue-soft: rgba(143, 220, 255, 0.2);
+  --wearable-panel: rgba(7, 12, 17, 0.78);
+  position: relative;
+  min-width: 0;
+  border: 1px solid rgba(143, 220, 255, 0.2);
+  background: #070b0f;
+  isolation: isolate;
+}
+
+.wearableCasePassport {
+  display: grid;
+  gap: 18px;
+  padding: clamp(22px, 2.6vw, 38px);
+  border-bottom: 1px solid rgba(143, 220, 255, 0.16);
+  background: linear-gradient(135deg, rgba(143, 220, 255, 0.07), rgba(255, 255, 255, 0.015));
+}
+
+.wearableCasePassport > div:first-child {
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  align-items: baseline;
+  gap: 18px;
+}
+
+.wearableCasePassport span {
+  color: #ff2a19;
+  font-size: 10px;
+  font-weight: 850;
+  letter-spacing: 0.14em;
+}
+
+.wearableCasePassport strong { font-size: 18px; }
+.wearableCasePassport small { color: #8398a2; font-size: 12px; line-height: 1.6; }
+
+.wearableStory {
+  position: relative;
+  height: 380vh;
+}
+
+.wearableStage {
+  --wearable-blue: #8fdcff;
+  --wearable-blue-soft: rgba(143, 220, 255, 0.2);
+  --story-progress: 0;
+  --stage-local: 0;
+  position: relative;
+  top: 0;
+  display: grid;
+  width: 100%;
+  height: calc(100svh - 88px);
+  min-height: 620px;
+  grid-template-columns: clamp(126px, 12vw, 188px) minmax(0, 1fr) clamp(260px, 24vw, 390px);
+  grid-template-rows: 88px minmax(0, 1fr) 62px;
+  overflow: hidden;
+  color: #eef7fb;
+  background:
+    linear-gradient(90deg, rgba(143, 220, 255, 0.025) 1px, transparent 1px) 0 0 / 9vw 100%,
+    linear-gradient(rgba(143, 220, 255, 0.03) 1px, transparent 1px) 0 0 / 100% 90px,
+    radial-gradient(circle at 52% 42%, rgba(44, 90, 111, 0.24), transparent 38rem),
+    #070b0f;
+}
+
+.wearableStage::before {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  content: "";
+  background:
+    linear-gradient(90deg, rgba(4, 7, 10, 0.96), transparent 16%, transparent 74%, rgba(4, 7, 10, 0.86)),
+    linear-gradient(180deg, rgba(4, 7, 10, 0.84), transparent 17%, transparent 84%, rgba(4, 7, 10, 0.88));
+}
+
+.wearableTopline,
+.wearableRail,
+.wearableCanvas,
+.wearableNarrative,
+.wearableStageFooter {
+  position: relative;
+  z-index: 2;
+}
+
+.wearableTopline {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 clamp(22px, 3vw, 48px);
+  border-bottom: 1px solid rgba(143, 220, 255, 0.16);
+  background: rgba(5, 9, 13, 0.7);
+  backdrop-filter: blur(16px);
+}
+
+.wearableProjectIdentity,
+.wearableProjectIdentity > div,
+.wearableRole {
+  display: flex;
+  align-items: center;
+}
+
+.wearableProjectIdentity { gap: 18px; }
+.wearableProjectIdentity > div { gap: 16px; }
+
+.wearableProjectNumber {
+  color: #ff2a19;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+}
+
+.wearableProjectIdentity small,
+.wearableRole small,
+.wearableStageFooter,
+.wearableStageCode {
+  color: #79909b;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+}
+
+.wearableProjectIdentity strong {
+  font-size: clamp(18px, 1.7vw, 27px);
+  letter-spacing: 0;
+}
+
+.wearableRole {
+  gap: 18px;
+  text-align: right;
+}
+
+.wearableRole span {
+  color: #b8c9d1;
+  font-size: 12px;
+}
+
+.wearableRail {
+  grid-column: 1;
+  grid-row: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 24px 20px 24px clamp(20px, 2.4vw, 38px);
+  border-right: 1px solid rgba(143, 220, 255, 0.12);
+}
+
+.wearableRail::before {
+  position: absolute;
+  top: 18%;
+  bottom: 18%;
+  left: clamp(31px, 3.25vw, 51px);
+  width: 1px;
+  content: "";
+  background: rgba(143, 220, 255, 0.18);
+}
+
+.wearableRail button {
+  position: relative;
+  display: grid;
+  min-height: 64px;
+  grid-template-columns: 28px 28px 1fr;
+  gap: 6px;
+  align-items: center;
+  padding: 0;
+  border: 0;
+  color: #60747e;
+  text-align: left;
+  background: transparent;
+  cursor: pointer;
+  transition: color 240ms ease;
+}
+
+.wearableRail button i {
+  position: relative;
+  z-index: 1;
+  width: 9px;
+  height: 9px;
+  margin-left: 8px;
+  border: 1px solid #617984;
+  border-radius: 50%;
+  background: #070b0f;
+  transition: border-color 240ms ease, background 240ms ease, box-shadow 240ms ease, transform 240ms ease;
+}
+
+.wearableRail button > span {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.wearableRail button small {
+  white-space: nowrap;
+  font-size: 10px;
+  letter-spacing: 0;
+}
+
+.wearableRail button:hover,
+.wearableRail button:focus-visible,
+.wearableRail button.is-active { color: #e6f7ff; }
+
+.wearableRail button.is-active i {
+  border-color: var(--wearable-blue);
+  background: var(--wearable-blue);
+  box-shadow: 0 0 0 5px rgba(143, 220, 255, 0.1), 0 0 22px rgba(143, 220, 255, 0.7);
+  transform: scale(1.12);
+}
+
+.wearableCanvas {
+  position: relative;
+  grid-column: 2;
+  grid-row: 2;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.wearableStage.is-outcome-only .wearableCanvas { grid-column: 2 / -1; }
+
+.wearableCanvas > div {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.wearableCanvas > div.is-active-stage { pointer-events: auto; }
+
+.wearableFrame {
+  position: absolute;
+  inset: clamp(16px, 2vw, 30px);
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  transform: translate3d(0, 18px, 0) scale(0.985);
+  transition: opacity 560ms ease, transform 720ms cubic-bezier(0.22, 1, 0.36, 1), visibility 0s linear 720ms;
+}
+
+.wearableFrame.is-active {
+  opacity: 1;
+  visibility: visible;
+  transform: translate3d(0, 0, 0) scale(1);
+  transition-delay: 0s;
+}
+
+.wearableFrame picture,
+.wearableFrame picture img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.wearableFrame picture img { object-fit: cover; }
+
+.wearableFrame.is-active picture img {
+  transform: translate3d(0, calc((var(--stage-local) - 0.5) * -10px), 0) scale(1.015);
+}
+
+.translationComposition::after {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  content: "";
+  background: linear-gradient(90deg, rgba(3, 6, 9, 0.8), transparent 48%, rgba(3, 6, 9, 0.08));
+}
+
+.wearableIntroScene {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background:
+    linear-gradient(112deg, transparent 55%, rgba(143, 220, 255, 0.09) 66%, transparent 76%),
+    #070b0f;
+}
+
+.wearableIntroScene::before {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  content: "";
+  opacity: 0.72;
+  background:
+    linear-gradient(rgba(143, 220, 255, 0.04) 1px, transparent 1px) 0 0 / 100% 48px,
+    linear-gradient(90deg, rgba(143, 220, 255, 0.035) 1px, transparent 1px) 0 0 / 48px 100%;
+}
+
+.wearableIntroScene::after {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  content: "";
+  background:
+    linear-gradient(90deg, rgba(3, 6, 9, 0.97) 0%, rgba(3, 6, 9, 0.86) 27%, rgba(3, 6, 9, 0.3) 52%, transparent 76%),
+    linear-gradient(180deg, rgba(3, 6, 9, 0.12), transparent 62%, rgba(3, 6, 9, 0.52));
+}
+
+.wearableIntroPortrait {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: block;
+  opacity: 0;
+  clip-path: ellipse(4% 6% at 70% 43%);
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 82%, transparent 97%);
+  mask-image: linear-gradient(180deg, #000 0%, #000 82%, transparent 97%);
+  transform: translate3d(10px, 8px, 0) scale(0.985);
+  transition:
+    clip-path 920ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 420ms ease,
+    transform 920ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: clip-path, opacity, transform;
+}
+
+.wearableFrame.is-active .wearableIntroPortrait {
+  opacity: 1;
+  clip-path: ellipse(92% 96% at 70% 43%);
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+.wearableIntroPortrait img,
+.wearableFrame.is-active .wearableIntroPortrait img {
+  object-fit: cover;
+  object-position: center;
+  filter: drop-shadow(0 0 24px rgba(143, 220, 255, 0.16));
+  transform: translate3d(0, calc((var(--stage-local) - 0.5) * -10px), 0) scale(1.02);
+}
+
+.wearableIntroLockup {
+  position: absolute;
+  z-index: 3;
+  top: 50%;
+  left: clamp(22px, 4vw, 70px);
+  display: grid;
+  max-width: 360px;
+  gap: 13px;
+  transform: translateY(-50%);
+}
+
+.wearableIntroLockup small {
+  color: var(--wearable-blue);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+}
+
+.wearableIntroLockup strong {
+  font-size: clamp(38px, 5vw, 82px);
+  line-height: 0.98;
+  letter-spacing: 0;
+}
+
+.wearableIntroLockup span {
+  color: #aebfc7;
+  font-size: clamp(13px, 1.1vw, 17px);
+  line-height: 1.65;
+}
+
+.researchComposition,
+.personaProfileComposition,
+.translationComposition,
+.appEcosystemComposition,
+.outcomeComposition {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.researchComposition {
+  --global-reveal: 1;
+  --trend-reveal: 1;
+  --profile-reveal: 1;
+  display: grid;
+  grid-template-columns: minmax(175px, 0.7fr) minmax(300px, 1.3fr);
+  grid-template-rows: minmax(270px, 1fr) minmax(150px, 0.48fr);
+  gap: clamp(12px, 1.5vw, 22px);
+  padding: clamp(20px, 2.4vw, 38px);
+  background:
+    linear-gradient(rgba(143, 220, 255, 0.035) 1px, transparent 1px) 0 0 / 100% 48px,
+    linear-gradient(90deg, rgba(143, 220, 255, 0.03) 1px, transparent 1px) 0 0 / 48px 100%,
+    radial-gradient(circle at 28% 28%, rgba(55, 135, 169, 0.14), transparent 28rem),
+    #060b0f;
+}
+
+.researchPanel {
+  position: relative;
+  min-width: 0;
+  padding: 17px 0 26px;
+  border-top: 1px solid rgba(143, 220, 255, 0.25);
+}
+
+.researchPanel > header { display: grid; gap: 6px; }
+.researchPanel > header span,
+.researchSequence,
+.researchDisclaimer,
+.trendDefinition {
+  color: #718891;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+}
+.researchPanel > header strong { color: #eaf8fc; font-size: clamp(13px, 1vw, 16px); }
+
+.researchGlobal {
+  grid-row: 1 / 3;
+  opacity: var(--global-reveal);
+  transform: translate3d(0, calc((1 - var(--global-reveal)) * 18px), 0);
+}
+
+.globalMetric { display: grid; grid-template-columns: auto 1fr; align-items: end; margin-top: clamp(24px, 4vh, 54px); }
+.globalMetric strong { font-size: clamp(54px, 6.4vw, 102px); line-height: 0.78; letter-spacing: 0; }
+.globalMetric > span { margin: 0 0 4px 8px; color: #dbe9ee; font-size: 13px; font-weight: 700; }
+.globalMetric small { grid-column: 1 / -1; margin-top: 14px; color: #77909a; font-size: 8px; font-weight: 800; letter-spacing: 0.16em; }
+
+.anxietyDotMatrix {
+  display: grid;
+  width: min(100%, 230px);
+  grid-template-columns: repeat(10, 1fr);
+  gap: clamp(5px, 0.65vw, 9px);
+  margin-top: clamp(25px, 4vh, 50px);
+}
+.anxietyDotMatrix i {
+  aspect-ratio: 1;
+  border: 1px solid rgba(147, 176, 188, 0.25);
+  border-radius: 50%;
+  background: rgba(129, 151, 160, 0.08);
+  opacity: clamp(0.16, calc(var(--global-reveal) * 1.2), 0.62);
+}
+.anxietyDotMatrix i.is-active {
+  border-color: var(--wearable-blue);
+  background: var(--wearable-blue);
+  box-shadow: 0 0 12px rgba(143, 220, 255, 0.65);
+  opacity: var(--global-reveal);
+}
+.anxietyDotMatrix i.is-partial {
+  border-color: var(--wearable-blue);
+  background: linear-gradient(90deg, var(--wearable-blue) 40%, rgba(129, 151, 160, 0.08) 40%);
+  opacity: var(--global-reveal);
+}
+.globalRate { display: flex; align-items: baseline; gap: 10px; margin: 18px 0 0; }
+.globalRate strong { color: var(--wearable-blue); font-size: clamp(25px, 2.5vw, 42px); }
+.globalRate span { max-width: 110px; color: #9aadb5; font-size: 9px; line-height: 1.5; }
+
+.researchTrend {
+  opacity: var(--trend-reveal);
+  transform: translate3d(calc((1 - var(--trend-reveal)) * 18px), 0, 0);
+}
+.trendDefinition { margin: 9px 0 0; letter-spacing: 0; font-weight: 500; }
+.stressTrendChart { display: block; width: 100%; height: min(30vh, 250px); margin-top: 2px; overflow: visible; }
+.trendReference line { stroke: rgba(151, 176, 186, 0.2); stroke-dasharray: 3 5; }
+.trendReference text { fill: #617680; font-size: 8px; }
+.trendArea { fill: rgba(143, 220, 255, 0.07); opacity: var(--trend-reveal); }
+.trendLine {
+  fill: none;
+  stroke: var(--wearable-blue);
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: calc(1 - var(--trend-reveal));
+  filter: drop-shadow(0 0 6px rgba(143, 220, 255, 0.45));
+}
+.trendBaseline { stroke: rgba(143, 220, 255, 0.14); }
+.trendKeyPoint { opacity: var(--trend-reveal); }
+.trendKeyPoint circle { fill: #071016; stroke: var(--wearable-blue); stroke-width: 2; }
+.trendKeyPoint2025 circle { fill: #ff2a19; stroke: #ff8d84; }
+.trendKeyPoint text { font-weight: 800; }
+.trendValue { fill: #eaf8fc; font-size: 11px; }
+.trendKeyPoint2025 .trendValue { fill: #ff6a5e; font-size: 14px; }
+.trendYear { fill: #6e838c; font-size: 8px; }
+.trendLatest { position: absolute; top: 16px; right: 0; display: grid; grid-template-columns: auto auto; gap: 0 9px; align-items: baseline; text-align: right; }
+.trendLatest span { color: #748a94; font-size: 8px; font-weight: 800; }
+.trendLatest strong { color: #ff4b3d; font-size: clamp(25px, 2.5vw, 42px); line-height: 1; }
+.trendLatest small { grid-column: 1 / -1; color: #657983; font-size: 8px; }
+
+.researchWorkforce {
+  opacity: var(--profile-reveal);
+  transform: translate3d(calc((1 - var(--profile-reveal)) * 18px), 0, 0);
+}
+.researchWorkforce > header { grid-template-columns: auto 1fr; align-items: baseline; }
+.researchWorkforce > header strong { text-align: right; }
+.workforceBars { display: grid; gap: 9px; margin-top: 14px; }
+.workforceBar { display: grid; grid-template-columns: minmax(76px, 0.7fr) minmax(120px, 2fr) 34px; gap: 10px; align-items: center; }
+.workforceBar > span { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+.workforceBar strong { color: #e4f0f4; font-size: 10px; }
+.workforceBar small { color: #657a84; font-size: 8px; }
+.workforceBar > i { display: block; height: 2px; background: rgba(143, 220, 255, 0.13); }
+.workforceBar b { display: block; width: calc(var(--bar-value) * 1%); height: 100%; background: var(--wearable-blue); box-shadow: 0 0 8px rgba(143, 220, 255, 0.5); transform: scaleX(var(--profile-reveal)); transform-origin: left; }
+.workforceBar em { color: #dcebf0; font-size: 11px; font-style: normal; font-weight: 800; }
+.workforceConclusion { position: absolute; right: 0; bottom: 20px; display: grid; justify-items: end; margin: 0; }
+.workforceConclusion span { color: #ff5144; font-size: 8px; font-weight: 900; letter-spacing: 0.16em; }
+.workforceConclusion strong { margin-top: 3px; color: #f0f8fb; font-size: 12px; }
+
+.researchSource { position: absolute; z-index: 8; bottom: 0; left: 0; }
+.researchSource summary { display: flex; align-items: center; gap: 8px; color: #7d949e; font-size: 8px; font-weight: 800; letter-spacing: 0.1em; list-style: none; cursor: pointer; }
+.researchSource summary::-webkit-details-marker { display: none; }
+.researchSource summary::before { width: 5px; height: 5px; border: 1px solid var(--wearable-blue); border-radius: 50%; content: ""; }
+.researchSource summary span { color: #536872; font-weight: 500; letter-spacing: 0; }
+.researchSourceDetail {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 0;
+  width: min(270px, 70vw);
+  padding: 13px;
+  border: 1px solid rgba(143, 220, 255, 0.3);
+  background: rgba(4, 10, 14, 0.96);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  visibility: hidden;
+  transform: translate3d(0, 6px, 0);
+  transition: opacity 180ms ease, transform 180ms ease, visibility 0s linear 180ms;
+}
+.researchSource:hover .researchSourceDetail,
+.researchSource:focus-within .researchSourceDetail,
+.researchSource[open] .researchSourceDetail { opacity: 1; visibility: visible; transform: none; transition-delay: 0s; }
+.researchSourceDetail p { margin: 0; color: #9db0b8; font-size: 9px; line-height: 1.65; }
+.researchSourceDetail a { display: inline-block; margin-top: 8px; color: var(--wearable-blue); font-size: 9px; text-decoration: none; }
+.researchSourceDetail a:hover,
+.researchSourceDetail a:focus-visible { text-decoration: underline; }
+.researchDisclaimer { position: absolute; right: clamp(20px, 2.4vw, 38px); bottom: 8px; margin: 0; letter-spacing: 0; font-weight: 500; }
+
+.personaProfileComposition {
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(210px, 0.75fr);
+  background:
+    linear-gradient(rgba(143, 220, 255, 0.035) 1px, transparent 1px) 0 0 / 100% 48px,
+    linear-gradient(90deg, rgba(143, 220, 255, 0.03) 1px, transparent 1px) 0 0 / 48px 100%,
+    radial-gradient(circle at 28% 20%, rgba(55, 135, 169, 0.14), transparent 24rem),
+    #070b0f;
+}
+
+.personaProfileContent {
+  display: grid;
+  min-width: 0;
+  grid-template-rows: auto minmax(0, 1fr);
+  padding: clamp(20px, 2.6vw, 42px);
+}
+
+.personaProfileHeader {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 18px;
+  padding-bottom: clamp(14px, 2vw, 26px);
+}
+
+.personaProfileHeader > div:first-child { min-width: 0; }
+.personaProfileHeader span,
+.personaProfileSection > span {
+  color: var(--wearable-blue);
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+}
+.personaProfileHeader h4 { margin: 9px 0 7px; font-size: clamp(27px, 3vw, 48px); line-height: 1; letter-spacing: 0; }
+.personaProfileHeader p { margin: 0; color: #8fa4ad; font-size: 10px; line-height: 1.5; }
+
+.personaProfileAge { display: grid; flex: 0 0 auto; text-align: right; }
+.personaProfileAge strong { color: #eef7fb; font-size: clamp(40px, 4.6vw, 72px); line-height: 0.82; letter-spacing: 0; }
+.personaProfileAge small { margin-top: 10px; color: #ff4a3d; font-size: 9px; font-weight: 800; }
+
+.personaProfileSections {
+  display: grid;
+  min-height: 0;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  border-top: 1px solid rgba(143, 220, 255, 0.2);
+  border-left: 1px solid rgba(143, 220, 255, 0.2);
+}
+
+.personaProfileSection {
+  position: relative;
+  min-width: 0;
+  padding: clamp(12px, 1.4vw, 22px);
+  border-right: 1px solid rgba(143, 220, 255, 0.16);
+  border-bottom: 1px solid rgba(143, 220, 255, 0.16);
+  transition: background 220ms ease;
+}
+.personaProfileSection:hover { background: rgba(143, 220, 255, 0.045); }
+.personaProfileSection h5 { margin: 7px 0 8px; font-size: clamp(13px, 1.2vw, 18px); letter-spacing: 0; }
+.personaProfileSection p { margin: 0; color: #9aadb6; font-size: clamp(9px, 0.8vw, 12px); line-height: 1.65; }
+
+.personaSignalList { display: grid; gap: 7px; margin-top: 6px; }
+.personaSignal {
+  display: grid;
+  grid-template-columns: minmax(72px, 0.86fr) minmax(50px, 1fr) 30px;
+  gap: 8px;
+  align-items: center;
+}
+.personaSignal small { overflow: hidden; color: #a9bbc3; font-size: 8px; text-overflow: ellipsis; white-space: nowrap; }
+.personaSignal i { display: block; height: 2px; background: rgba(143, 220, 255, 0.13); }
+.personaSignal i b { display: block; width: calc(var(--signal-value) * 1%); height: 100%; background: var(--wearable-blue); box-shadow: 0 0 9px rgba(143, 220, 255, 0.5); }
+.personaSignal em { color: #eef7fb; font-size: 9px; font-style: normal; font-weight: 800; text-align: right; }
+.personaEstimate { position: absolute; right: 12px; bottom: 8px; color: #536b76; font-size: 7px; }
+
+.personaScenes ol { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 10px; margin: 0; padding: 0; list-style: none; }
+.personaScenes li { display: flex; gap: 7px; align-items: center; color: #a9bbc3; font-size: 9px; white-space: nowrap; }
+.personaScenes li b { color: #ff4a3d; font-size: 8px; }
+
+.personaProfilePortrait { position: relative; min-width: 0; margin: 0; overflow: hidden; border-left: 1px solid rgba(143, 220, 255, 0.18); }
+.personaProfilePortrait::after {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  content: "";
+  background: linear-gradient(180deg, rgba(3, 7, 10, 0.04), rgba(3, 7, 10, 0.08) 48%, rgba(3, 7, 10, 0.9));
+}
+.personaProfilePortrait img { width: 100%; height: 100%; object-fit: cover; object-position: 58% center; filter: saturate(0.72) contrast(1.04) brightness(0.78); }
+.personaProfilePortrait figcaption { position: absolute; z-index: 2; right: 20px; bottom: 22px; left: 20px; display: grid; gap: 6px; }
+.personaProfilePortrait figcaption span { color: var(--wearable-blue); font-size: 8px; font-weight: 800; letter-spacing: 0.14em; }
+.personaProfilePortrait figcaption strong { font-size: clamp(16px, 1.7vw, 25px); line-height: 1.15; }
+
+.translationImage { position: absolute; inset: 0; }
+.translationImage img { object-fit: cover; object-position: center; filter: brightness(0.78) saturate(0.78); }
+.translationComposition::after { background: linear-gradient(90deg, rgba(3, 6, 9, 0.76), transparent 42%, rgba(3, 6, 9, 0.18)); }
+.translationCallout {
+  position: absolute;
+  z-index: 3;
+  display: grid;
+  min-width: 165px;
+  grid-template-columns: 34px 1fr;
+  gap: 3px 10px;
+  padding: 13px 14px;
+  border-left: 1px solid var(--wearable-blue);
+  background: rgba(4, 9, 13, 0.76);
+  backdrop-filter: blur(12px);
+}
+.translationCallout span { grid-row: 1 / 3; color: var(--wearable-blue); font-size: 11px; font-weight: 900; }
+.translationCallout strong { font-size: 12px; }
+.translationCallout small { color: #81959f; font-size: 9px; }
+.calloutSense { top: 18%; left: 5%; }
+.calloutMassage { top: 47%; left: 8%; }
+.calloutWarm { bottom: 12%; left: 4%; }
+
+.outcomeTechnical { padding: clamp(8px, 1vw, 16px); background: #070b0f; }
+.outcomeSixViewOnly { display: grid; place-items: center; }
+.outcomeTechnicalLink { position: relative; display: block; width: 100%; height: 100%; min-width: 0; cursor: zoom-in; }
+.outcomeTechnicalSheet { display: block; width: 100%; height: 100%; object-fit: contain; background: #070b0f; }
+.outcomeTechnicalLink:focus-visible { outline: 2px solid var(--wearable-blue); outline-offset: -4px; }
+
+.appEcosystemComposition {
+  background:
+    linear-gradient(90deg, transparent 27%, rgba(143, 220, 255, 0.065) 50%, transparent 73%),
+    linear-gradient(rgba(143, 220, 255, 0.035) 1px, transparent 1px) 0 0 / 100% 52px,
+    linear-gradient(90deg, rgba(143, 220, 255, 0.03) 1px, transparent 1px) 0 0 / 52px 100%,
+    #070b0f;
+}
+
+.appEcosystemComposition::after {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  content: "";
+  background: linear-gradient(180deg, rgba(4, 8, 12, 0.2), transparent 48%, rgba(4, 8, 12, 0.72));
+}
+
+.appPanelDeck {
+  position: absolute;
+  z-index: 3;
+  inset: 4% 2.5% 5%;
+  display: grid;
+  grid-template-columns: minmax(0, 0.84fr) minmax(0, 1.12fr) minmax(0, 1.12fr) minmax(0, 0.84fr);
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: clamp(7px, 0.8vw, 13px) clamp(8px, 0.9vw, 15px);
+  align-items: stretch;
+}
+
+.appPanel {
+  appearance: none;
+  position: relative;
+  display: grid;
+  height: 100%;
+  min-width: 0;
+  grid-template-rows: minmax(0, 1fr) 40px;
+  padding: 0;
+  border: 0;
+  color: #eef7fb;
+  font: inherit;
+  text-align: left;
+  background: transparent;
+  cursor: pointer;
+  opacity: 0.5;
+  transform: translate3d(0, 5px, 0) scale(0.95);
+  transform-origin: center center;
+  transition: opacity 230ms ease, transform 260ms cubic-bezier(0.22, 1, 0.36, 1), filter 230ms ease;
+}
+
+.appPanel[data-panel="headwear-link"] { grid-column: 1; grid-row: 1; }
+.appPanel[data-panel="rear-link"] { grid-column: 1; grid-row: 2; }
+.appPanel[data-panel="health-report"] { grid-column: 2; grid-row: 1 / span 2; }
+.appPanel[data-panel="emotion-calendar"] { grid-column: 3; grid-row: 1 / span 2; }
+.appPanel[data-panel="temperature"] { grid-column: 4; grid-row: 1; }
+.appPanel[data-panel="massage"] { grid-column: 4; grid-row: 2; }
+
+.appPanel.is-active {
+  z-index: 5;
+  opacity: 1;
+  filter: none;
+  transform: translate3d(0, -6px, 0) scale(1.05);
+}
+
+.wearableFrame.is-active .appPanel {
+  animation: app-panel-enter 520ms var(--app-enter-delay) both cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes app-panel-enter {
+  from { opacity: 0; transform: translate3d(0, 18px, 0) scale(0.9); }
+}
+
+.appPhoneShell {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  max-width: 100%;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+  background: transparent;
+}
+
+.appPhoneShell img {
+  display: block;
+  box-sizing: border-box;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  aspect-ratio: var(--screen-ratio);
+  border: 1px solid rgba(181, 208, 219, 0.58);
+  border-radius: 4px;
+  object-fit: contain;
+  background: transparent;
+  box-shadow: 0 18px 30px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(143, 220, 255, 0.035);
+}
+
+.appPanelCaption {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-width: 0;
+  padding-top: 7px;
+  text-align: center;
+}
+
+.appPanelCaption small {
+  overflow: hidden;
+  color: var(--wearable-blue);
+  font-size: 7px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.appPanelCaption strong { overflow: hidden; font-size: 10px; letter-spacing: 0; text-overflow: ellipsis; white-space: nowrap; }
+.appPanel:focus-visible { outline: 1px solid var(--wearable-blue); outline-offset: 4px; }
+
+.appEcosystemDisclaimer {
+  position: absolute;
+  right: 8px;
+  bottom: 3px;
+  z-index: 5;
+  margin: 0;
+  color: #5d737d;
+  font-size: 7px;
+  letter-spacing: 0;
+}
+
+.wearableNarrative {
+  grid-column: 3;
+  grid-row: 2;
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(28px, 3.8vw, 62px);
+  border-left: 1px solid rgba(143, 220, 255, 0.12);
+  background: linear-gradient(90deg, rgba(7, 12, 17, 0.36), rgba(7, 12, 17, 0.88));
+}
+
+.wearableStageCode { color: var(--wearable-blue); }
+.wearableNarrative h3 {
+  margin: 22px 0 18px;
+  font-size: clamp(25px, 2.4vw, 43px);
+  line-height: 1.12;
+  letter-spacing: 0;
+}
+.wearableNarrative p { margin: 0; color: #9eb0b8; font-size: clamp(13px, 1.02vw, 16px); line-height: 1.78; }
+.wearableNarrative ul { display: grid; gap: 11px; margin: 28px 0 0; padding: 0; list-style: none; }
+.wearableNarrative li { position: relative; padding-left: 18px; color: #d1e0e6; font-size: 11px; line-height: 1.5; }
+.wearableNarrative li::before { position: absolute; top: 0.55em; left: 0; width: 7px; height: 1px; content: ""; background: var(--wearable-blue); }
+
+.wearableStageFooter {
+  grid-column: 1 / -1;
+  grid-row: 3;
+  display: grid;
+  grid-template-columns: 1fr auto minmax(110px, 18vw);
+  gap: 18px;
+  align-items: center;
+  padding: 0 clamp(22px, 3vw, 48px);
+  border-top: 1px solid rgba(143, 220, 255, 0.14);
+  background: rgba(5, 9, 13, 0.72);
+}
+.wearableStageFooter strong { color: #eaf8ff; font-size: 10px; letter-spacing: 0.12em; }
+.wearableStageFooter > i { display: block; height: 2px; background: rgba(143, 220, 255, 0.15); }
+.wearableStageFooter > i span { display: block; height: 100%; background: var(--wearable-blue); box-shadow: 0 0 12px rgba(143, 220, 255, 0.7); transition: width 420ms ease; }
+
+.wearableStaticCopy { display: none; }
+
+@media (max-width: 1180px) {
+  .wearableStage {
+    min-height: 612px;
+    grid-template-columns: 1fr clamp(250px, 31vw, 330px);
+    grid-template-rows: 82px 72px minmax(0, 1fr) 58px;
+  }
+  .wearableTopline { grid-row: 1; }
+  .wearableRail {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    flex-direction: row;
+    justify-content: stretch;
+    padding: 0 clamp(18px, 3vw, 34px);
+    border-right: 0;
+    border-bottom: 1px solid rgba(143, 220, 255, 0.12);
+  }
+  .wearableRail::before { top: 36px; right: 7%; bottom: auto; left: 7%; width: auto; height: 1px; }
+  .wearableRail button { min-width: 0; min-height: 72px; flex: 1; grid-template-columns: 1fr; grid-template-rows: 20px 14px; gap: 0; justify-items: center; text-align: center; }
+  .wearableRail button i { grid-row: 1; margin: 0; }
+  .wearableRail button > span { display: none; }
+  .wearableRail button small { grid-row: 2; font-size: 9px; }
+  .wearableCanvas { grid-column: 1; grid-row: 3; }
+  .wearableStage.is-outcome-only .wearableCanvas { grid-column: 1 / -1; }
+  .wearableNarrative { grid-column: 2; grid-row: 3; }
+  .wearableStageFooter { grid-row: 4; }
+  .wearableProjectIdentity > div { display: grid; gap: 3px; }
+  .wearableRole span { display: none; }
+  .researchComposition { grid-template-rows: minmax(230px, 1fr) minmax(172px, 0.64fr); }
+  .stressTrendChart { height: 170px; }
+  .workforceBars { gap: 6px; margin-top: 10px; }
+  .researchDisclaimer { display: none; }
+  .appPanelDeck { inset-inline: 1.5%; gap: 5px; }
+  .appPanelCaption { gap: 4px; }
+  .appPanelCaption strong { font-size: 8px; }
+}
+
+@media (max-width: 760px) {
+  .wearableProject { margin-inline: calc(clamp(18px, 4vw, 26px) * -1); border-inline: 0; }
+  .wearableCasePassport { padding: 18px 14px; }
+  .wearableCasePassport > div:first-child { grid-template-columns: 1fr; gap: 6px; }
+  .wearableCasePassport strong { font-size: 16px; }
+  .wearableCasePassport small { font-size: 11px; }
+  .wearableStory { height: 420vh; }
+  .wearableStage {
+    top: 0;
+    height: calc(100svh - 74px);
+    min-height: 570px;
+    grid-template-columns: 1fr;
+    grid-template-rows: 72px 58px minmax(280px, 48vh) minmax(180px, 1fr) 48px;
+  }
+  .wearableTopline { padding: 0 18px; }
+  .wearableProjectIdentity { gap: 10px; }
+  .wearableProjectIdentity > div small { display: none; }
+  .wearableProjectIdentity strong { font-size: 18px; }
+  .wearableRole { display: none; }
+  .wearableRail { grid-row: 2; padding: 0 12px; overflow: hidden; }
+  .wearableRail::before { top: 28px; left: 8%; right: 8%; }
+  .wearableRail button { min-height: 58px; grid-template-rows: 16px 12px; }
+  .wearableRail button i { width: 8px; height: 8px; }
+  .wearableRail button small { max-width: 52px; overflow: hidden; font-size: 8px; text-overflow: ellipsis; }
+  .wearableCanvas { grid-column: 1; grid-row: 3; }
+  .wearableStage.is-outcome-only .wearableCanvas { grid-column: 1; grid-row: 3 / 5; }
+  .wearableFrame { inset: 10px 14px; }
+  .wearableNarrative {
+    grid-column: 1;
+    grid-row: 4;
+    justify-content: flex-start;
+    padding: 18px 22px;
+    border-top: 1px solid rgba(143, 220, 255, 0.12);
+    border-left: 0;
+    background: rgba(6, 11, 15, 0.9);
+  }
+  .wearableNarrative h3 { margin: 9px 0 8px; font-size: clamp(22px, 7vw, 31px); }
+  .wearableNarrative p { font-size: 12px; line-height: 1.55; }
+  .wearableNarrative ul { display: flex; flex-wrap: wrap; gap: 6px 14px; margin-top: 11px; }
+  .wearableNarrative li { font-size: 9px; }
+  .wearableStageFooter { grid-row: 5; grid-template-columns: 1fr auto; padding: 0 18px; }
+  .wearableStageFooter > span { display: none; }
+  .wearableStageFooter > i { grid-column: 1; grid-row: 1; }
+  .wearableStageFooter > strong { grid-column: 2; grid-row: 1; }
+  .wearableIntroLockup { top: auto; right: 18px; bottom: 18px; left: 18px; gap: 6px; transform: none; }
+  .wearableIntroLockup strong { font-size: 34px; }
+  .wearableIntroLockup span { font-size: 11px; }
+  .wearableIntroScene::after {
+    background:
+      linear-gradient(180deg, rgba(3, 6, 9, 0.08) 0%, transparent 48%, rgba(3, 6, 9, 0.94) 84%, #030609 100%),
+      linear-gradient(90deg, rgba(3, 6, 9, 0.18), transparent 72%);
+  }
+  .wearableIntroPortrait { clip-path: ellipse(5% 6% at 53% 33%); }
+  .wearableFrame.is-active .wearableIntroPortrait { clip-path: ellipse(98% 90% at 53% 33%); }
+  .wearableIntroPortrait img,
+  .wearableFrame.is-active .wearableIntroPortrait img {
+    object-position: center 42%;
+    transform: translate3d(0, calc((var(--stage-local) - 0.5) * -8px), 0) scale(1.025);
+  }
+  .researchComposition {
+    display: grid;
+    grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+    grid-template-rows: minmax(0, 1fr) minmax(104px, 0.62fr);
+    gap: 8px 12px;
+    padding: 10px 12px 9px;
+  }
+  .researchPanel {
+    position: relative;
+    inset: auto;
+    min-height: 0;
+    padding: 9px 0 17px;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition: none;
+  }
+  .researchPanel > header { gap: 3px; }
+  .researchPanel > header span { font-size: 6px; }
+  .researchPanel > header strong { font-size: 9px; }
+  .researchGlobal { grid-column: 1; grid-row: 1; display: block; }
+  .globalMetric { margin-top: 9px; }
+  .globalMetric strong { font-size: clamp(38px, 11vw, 46px); }
+  .globalMetric > span { margin-bottom: 1px; font-size: 9px; }
+  .globalMetric small { margin-top: 7px; font-size: 6px; }
+  .anxietyDotMatrix { width: 72px; gap: 2px; margin-top: 8px; }
+  .globalRate { gap: 0; margin-top: 7px; }
+  .globalRate strong { font-size: 18px; }
+  .globalRate span { display: none; }
+  .researchTrend { grid-column: 2; grid-row: 1; padding-right: 0; }
+  .trendDefinition { margin-top: 4px; font-size: 6px; }
+  .stressTrendChart { height: 135px; margin-top: 6px; }
+  .trendLatest { top: 8px; }
+  .trendLatest span,
+  .trendLatest small { display: none; }
+  .trendLatest strong { font-size: 20px; }
+  .trendReference text { font-size: 7px; }
+  .trendValue { font-size: 9px; }
+  .trendKeyPoint2025 .trendValue { font-size: 10px; }
+  .trendYear { font-size: 7px; }
+  .researchWorkforce { grid-column: 1 / -1; grid-row: 2; }
+  .researchWorkforce > header { display: flex; align-items: baseline; justify-content: space-between; }
+  .researchWorkforce > header strong { margin: 0; text-align: right; }
+  .workforceBars { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-top: 10px; }
+  .workforceBar { display: grid; grid-template-columns: 1fr auto; gap: 4px 6px; }
+  .workforceBar > span { display: grid; justify-content: start; }
+  .workforceBar small { font-size: 6px; }
+  .workforceBar > i { grid-column: 1 / -1; grid-row: 2; }
+  .workforceBar em { grid-column: 2; grid-row: 1; font-size: 9px; }
+  .workforceConclusion { right: 0; bottom: 15px; }
+  .workforceConclusion span { font-size: 6px; }
+  .workforceConclusion strong { font-size: 9px; }
+  .researchSource summary { gap: 4px; font-size: 6px; }
+  .researchSource summary::before { width: 3px; height: 3px; }
+  .researchSource summary span { display: none; }
+  .researchSourceDetail { width: min(260px, 78vw); }
+  .researchDisclaimer { display: none; }
+  .researchSourceDetail { width: min(260px, 78vw); }
+  .personaProfileComposition { grid-template-columns: minmax(0, 1fr) 30%; }
+  .personaProfileContent { padding: 10px; }
+  .personaProfileHeader { gap: 8px; padding-bottom: 8px; }
+  .personaProfileHeader span,
+  .personaProfileSection > span { font-size: 5px; }
+  .personaProfileHeader h4 { margin: 4px 0 3px; font-size: 19px; }
+  .personaProfileHeader p { font-size: 6.5px; }
+  .personaProfileAge strong { font-size: 27px; }
+  .personaProfileAge small { margin-top: 4px; font-size: 5px; }
+  .personaProfileSection { padding: 7px; }
+  .personaProfileSection h5 { margin: 3px 0 4px; font-size: 8.5px; }
+  .personaProfileSection p { font-size: 6.5px; line-height: 1.45; }
+  .personaSignalList { gap: 3px; margin-top: 3px; }
+  .personaSignal { grid-template-columns: minmax(40px, 0.9fr) minmax(24px, 1fr) 20px; gap: 3px; }
+  .personaSignal small { font-size: 5.5px; }
+  .personaSignal em { font-size: 6.5px; }
+  .personaEstimate { right: 5px; bottom: 3px; font-size: 4px; }
+  .personaScenes ol { gap: 3px 4px; }
+  .personaScenes li { gap: 3px; font-size: 5.5px; }
+  .personaScenes li b { font-size: 5px; }
+  .personaProfilePortrait figcaption { right: 8px; bottom: 10px; left: 8px; gap: 3px; }
+  .personaProfilePortrait figcaption span { font-size: 5px; }
+  .personaProfilePortrait figcaption strong { font-size: 11px; }
+  .translationImage img { object-position: 44% center; }
+  .translationCallout { min-width: 132px; grid-template-columns: 24px 1fr; padding: 8px 9px; }
+  .translationCallout strong { font-size: 10px; }
+  .translationCallout small { font-size: 8px; }
+  .calloutSense { top: 8%; left: 2%; }
+  .calloutMassage { top: 43%; left: 3%; }
+  .calloutWarm { bottom: 5%; left: 2%; }
+  .appPanelDeck { inset: 2% 0 4%; display: block; }
+  .appPanel {
+    position: absolute;
+    width: 21%;
+    height: 43%;
+    grid-template-rows: minmax(0, 1fr) 22px;
+    opacity: 0.43;
+    transform: translate3d(0, 0, 0) scale(0.92);
+  }
+  .appPanel[data-panel="headwear-link"] { top: 0; left: 0; transform-origin: left top; }
+  .appPanel[data-panel="rear-link"] { bottom: 0; left: 0; transform-origin: left bottom; }
+  .appPanel[data-panel="temperature"] { top: 0; right: 0; transform-origin: right top; }
+  .appPanel[data-panel="massage"] { right: 0; bottom: 0; transform-origin: right bottom; }
+  .appPanel[data-panel="health-report"],
+  .appPanel[data-panel="emotion-calendar"] { top: 4%; z-index: 3; width: 28%; height: 88%; opacity: 0.76; }
+  .appPanel[data-panel="health-report"] { left: 21%; }
+  .appPanel[data-panel="emotion-calendar"] { right: 21%; }
+  .appPanel.is-active { z-index: 8; opacity: 1; transform: translate3d(0, -2px, 0) scale(1.04); }
+  .appPanel[data-group="connection"].is-active,
+  .appPanel[data-group="control"].is-active { transform: translate3d(0, 0, 0) scale(1.2); }
+  .appPhoneShell img { border-radius: 3px; }
+  .appPanelCaption { gap: 3px; padding-top: 3px; }
+  .appPanelCaption small { font-size: 5px; }
+  .appPanelCaption strong { font-size: 6.5px; }
+  .appEcosystemDisclaimer { right: 4px; bottom: 0; font-size: 5px; }
+  .outcomeTechnical { padding: 4px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wearableStory { height: auto; }
+  .wearableStage {
+    position: relative;
+    display: block;
+    height: auto;
+    min-height: 0;
+    overflow: visible;
+  }
+  .wearableTopline { position: sticky; top: 88px; z-index: 5; min-height: 78px; }
+  .wearableRail,
+  .wearableNarrative,
+  .wearableStageFooter { display: none; }
+  .wearableCanvas { display: grid; gap: 18px; padding: 18px; overflow: visible; }
+  .wearableCanvas > div { position: relative; inset: auto; scroll-margin-top: 96px; pointer-events: auto; }
+  .wearableFrame,
+  .wearableFrame.is-active {
+    position: relative;
+    inset: auto;
+    display: block;
+    min-height: 620px;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition: none;
+  }
+  .wearableFrame picture img,
+  .wearableFrame.is-active picture img { transform: none; }
+  .wearableIntroPortrait,
+  .wearableFrame.is-active .wearableIntroPortrait {
+    opacity: 1;
+    clip-path: none;
+    transform: none;
+    transition: none;
+  }
+  .appPanel,
+  .wearableFrame.is-active .appPanel { animation: none; transition: none; }
+  .appPanel { opacity: 0.78; }
+  .appPanel.is-active { opacity: 1; }
+  .researchComposition { min-height: 620px; }
+  .researchPanel { opacity: 1; visibility: visible; transform: none; }
+  .wearableStaticCopy {
+    position: absolute;
+    z-index: 8;
+    right: 0;
+    bottom: 0;
+    display: block;
+    width: min(420px, 72%);
+    padding: 22px;
+    background: rgba(5, 10, 14, 0.9);
+  }
+  .wearableStaticCopy span { color: var(--wearable-blue); font-size: 9px; font-weight: 800; letter-spacing: 0.16em; }
+  .wearableStaticCopy h4 { margin: 10px 0 8px; font-size: 24px; }
+  .wearableStaticCopy p { margin: 0; color: #9fb2bb; font-size: 12px; line-height: 1.65; }
+}
+
+@media (max-width: 760px) and (prefers-reduced-motion: reduce) {
+  .wearableTopline { top: 74px; }
+  .wearableFrame,
+  .wearableFrame.is-active { min-height: 520px; }
+  .researchComposition { display: grid; min-height: 920px; gap: 22px; padding: 18px; }
+  .researchPanel,
+  .researchPanel.is-current { position: relative; inset: auto; display: block; min-height: 260px; opacity: 1; visibility: visible; transform: none; }
+  .researchGlobal { min-height: 340px; }
+  .researchDisclaimer { position: relative; right: auto; bottom: auto; left: auto; white-space: normal; }
+  .wearableStaticCopy { width: 88%; }
+}

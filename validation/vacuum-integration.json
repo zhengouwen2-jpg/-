@@ -1,0 +1,184 @@
+{
+  "url": "http://127.0.0.1:5174/",
+  "projectOrder": [
+    {
+      "title": "方太模块化移动厨房",
+      "index": "01"
+    },
+    {
+      "title": "手持吸尘器结构设计",
+      "index": "02"
+    },
+    {
+      "title": "Mouse Dumpling IP 形象设计",
+      "index": "03"
+    }
+  ],
+  "lazyLoading": {
+    "beforeScroll": true,
+    "glbRequestCount": 1,
+    "sceneImageRequestCount": 3
+  },
+  "scenes": {
+    "initial": {
+      "cardCount": 3,
+      "activeSceneId": "keyboard",
+      "vertical": true,
+      "inside": true,
+      "width": 220
+    },
+    "switchStable": true,
+    "mutedAtHalf": true,
+    "hover": {
+      "headingExpandsActive": true,
+      "carIsTemporary": true,
+      "modelStable": true,
+      "playbackContinues": true,
+      "clickPersistsAfterLeave": true,
+      "keyboardWorks": true
+    },
+    "restoredAtAssembly": true
+  },
+  "playback": {
+    "playingWhenReady": true,
+    "pausedAway": true,
+    "resumedOnReturn": true
+  },
+  "embeddedWheel": {
+    "pageScrollDelta": 160,
+    "cameraDelta": 0
+  },
+  "interactions": {
+    "progress": 0.65,
+    "activeView": "side",
+    "zoomReducedRadius": true,
+    "selectedName": "透明吸嘴",
+    "visibleLabels": 10,
+    "labelsSafe": true
+  },
+  "fullscreenFallback": {
+    "entered": true,
+    "exited": true
+  },
+  "standalone": {
+    "embedded": false,
+    "playing": true,
+    "wheelChangedRadius": true,
+    "tabletScenes": {
+      "vertical": false,
+      "horizontal": true,
+      "inside": true,
+      "scrollable": false,
+      "activeSceneId": "keyboard"
+    },
+    "tabletHoverWorks": true,
+    "labelsSafe": true
+  },
+  "mobile": {
+    "partsOpen": true,
+    "partsInside": true,
+    "moreOpen": true,
+    "scenes": {
+      "inside": true,
+      "horizontal": true,
+      "scrollable": true,
+      "activeSceneId": "keyboard"
+    },
+    "touchPreviewWorks": true,
+    "labelsSafe": true,
+    "layout": [
+      {
+        "selector": ".topbar",
+        "visible": true,
+        "inside": true,
+        "rect": {
+          "left": 0,
+          "top": 0,
+          "right": 322,
+          "bottom": 68
+        },
+        "viewport": {
+          "width": 322,
+          "height": 724
+        }
+      },
+      {
+        "selector": ".controls",
+        "visible": true,
+        "inside": true,
+        "rect": {
+          "left": 0,
+          "top": 492,
+          "right": 322,
+          "bottom": 724
+        },
+        "viewport": {
+          "width": 322,
+          "height": 724
+        }
+      },
+      {
+        "selector": "#playButton",
+        "visible": true,
+        "inside": true,
+        "rect": {
+          "left": 14,
+          "top": 507,
+          "right": 52,
+          "bottom": 545
+        },
+        "viewport": {
+          "width": 322,
+          "height": 724
+        }
+      },
+      {
+        "selector": "#progressSlider",
+        "visible": true,
+        "inside": true,
+        "rect": {
+          "left": 101,
+          "top": 535,
+          "right": 259,
+          "bottom": 539
+        },
+        "viewport": {
+          "width": 322,
+          "height": 724
+        }
+      },
+      {
+        "selector": "#viewControl",
+        "visible": true,
+        "inside": true,
+        "rect": {
+          "left": 14,
+          "top": 555,
+          "right": 308,
+          "bottom": 591
+        },
+        "viewport": {
+          "width": 322,
+          "height": 724
+        }
+      },
+      {
+        "selector": "#moreButton",
+        "visible": true,
+        "inside": true,
+        "rect": {
+          "left": 268,
+          "top": 509,
+          "right": 308,
+          "bottom": 543
+        },
+        "viewport": {
+          "width": 322,
+          "height": 724
+        }
+      }
+    ]
+  },
+  "errors": [],
+  "pass": true
+}

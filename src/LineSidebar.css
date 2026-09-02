@@ -1,0 +1,150 @@
+.lineSidebar {
+  --line-accent: #ff2a19;
+  --line-text: #c4cbd0;
+  --line-marker: rgba(255, 255, 255, 0.28);
+  --line-marker-length: 46px;
+  --line-item-gap: 22px;
+  --line-font-size: 1rem;
+  display: flex;
+  min-width: 210px;
+}
+
+.lineSidebarList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--line-item-gap);
+  width: 100%;
+  margin: 0;
+  padding: 8px 0;
+  list-style: none;
+}
+
+.lineSidebarItem {
+  position: relative;
+}
+
+.lineSidebarItem button {
+  position: relative;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 16px;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  outline: 0;
+  padding: 8px 0;
+  text-align: left;
+}
+
+.lineSidebarItem button::before {
+  position: absolute;
+  inset: -7px -20px;
+  content: "";
+}
+
+.lineSidebarMarker {
+  display: block;
+  width: calc(var(--line-marker-length) * 0.63);
+  height: 1px;
+  flex: 0 0 auto;
+  background: var(--line-marker);
+  transition: width 220ms ease, background-color 180ms ease;
+}
+
+.lineSidebarLabel {
+  position: relative;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 10px;
+  color: var(--line-text);
+  font-size: var(--line-font-size);
+  line-height: 1.18;
+  transform: none;
+  transition: color 180ms ease;
+  white-space: nowrap;
+}
+
+.lineSidebarIndex {
+  color: currentColor;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.76em;
+  font-weight: 800;
+  opacity: 0.52;
+  transition: color 180ms ease, opacity 180ms ease;
+}
+
+.lineSidebarText {
+  font-weight: 760;
+  letter-spacing: 0.03em;
+}
+
+.lineSidebarItem:hover:not([aria-current="true"]) .lineSidebarMarker,
+.lineSidebarItem:focus-within:not([aria-current="true"]) .lineSidebarMarker {
+  width: calc(var(--line-marker-length) * 0.78);
+  background: color-mix(in srgb, var(--line-accent) 48%, var(--line-marker));
+}
+
+.lineSidebarItem:hover:not([aria-current="true"]) .lineSidebarLabel,
+.lineSidebarItem:focus-within:not([aria-current="true"]) .lineSidebarLabel {
+  color: color-mix(in srgb, var(--line-accent) 28%, #e3e8eb);
+}
+
+.lineSidebarItem[aria-current="true"] .lineSidebarMarker {
+  width: var(--line-marker-length);
+  background: var(--line-accent);
+}
+
+.lineSidebarItem[aria-current="true"] .lineSidebarLabel,
+.lineSidebarItem[aria-current="true"] .lineSidebarText {
+  color: #fff;
+}
+
+.lineSidebarItem[aria-current="true"] .lineSidebarIndex {
+  color: var(--line-accent);
+  opacity: 1;
+}
+
+.lineSidebarItem button:focus-visible .lineSidebarLabel {
+  text-decoration: underline;
+  text-decoration-color: var(--line-accent);
+  text-underline-offset: 6px;
+}
+
+@media (max-width: 980px) {
+  .lineSidebar {
+    width: 100%;
+    min-width: 0;
+    overflow-x: auto;
+  }
+
+  .lineSidebarList {
+    flex-direction: row;
+    gap: 10px;
+    width: max-content;
+    padding: 0 0 8px;
+  }
+
+  .lineSidebarItem button {
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    padding: 10px 12px;
+  }
+
+  .lineSidebarMarker {
+    display: none;
+  }
+
+  .lineSidebarLabel {
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lineSidebarMarker,
+  .lineSidebarLabel,
+  .lineSidebarIndex {
+    transition: none;
+  }
+}

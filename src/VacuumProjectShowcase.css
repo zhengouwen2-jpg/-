@@ -1,0 +1,285 @@
+.vacuumProject {
+  position: relative;
+  display: grid;
+  scroll-margin-top: 108px;
+  gap: clamp(26px, 3vw, 48px);
+  padding: clamp(28px, 3.4vw, 58px);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  background:
+    radial-gradient(circle at 12% 12%, rgba(255, 42, 25, 0.17), transparent 34rem),
+    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px) 0 0 / 96px 96px,
+    linear-gradient(90deg, rgba(255, 255, 255, 0.022) 1px, transparent 1px) 0 0 / 96px 96px,
+    #070809;
+}
+
+.vacuumProjectHeader {
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(340px, 0.56fr);
+  gap: clamp(32px, 5vw, 92px);
+  align-items: end;
+}
+
+.vacuumProjectIdentity .projectIndex {
+  margin-bottom: 34px;
+}
+
+.vacuumProjectIdentity h3 {
+  max-width: 920px;
+  margin: 14px 0 0;
+  font-size: clamp(40px, 5vw, 82px);
+  line-height: 1.02;
+}
+
+.vacuumProjectSummary {
+  align-self: end;
+}
+
+.vacuumProjectRole {
+  margin: 0 0 18px;
+  color: #ff4b3c !important;
+  font-size: 12px !important;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+}
+
+.vacuumProjectSummary > p:not(.vacuumProjectRole) {
+  margin: 0;
+  color: #c7d0d4;
+  font-size: clamp(16px, 1.18vw, 20px);
+  line-height: 1.72;
+}
+
+.vacuumProjectSummary .tags {
+  margin-bottom: 0;
+}
+
+.vacuumEvidence {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.vacuumEvidence article {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 16px;
+  padding: 18px 20px;
+  background: #0a0c0e;
+}
+
+.vacuumEvidence span {
+  color: #ff2a19;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.vacuumEvidence strong {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 14px;
+}
+
+.vacuumEvidence p {
+  margin: 0;
+  color: #8f9da3;
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.vacuumViewerShell {
+  position: relative;
+  scroll-margin-top: 108px;
+  height: clamp(680px, 82vh, 900px);
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 8px;
+  background: #090b0d;
+  box-shadow: 0 32px 90px rgba(0, 0, 0, 0.42), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.vacuumViewerFrame {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: #090b0d;
+}
+
+.vacuumViewerToolbar {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 6;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.vacuumViewerStatus {
+  display: flex;
+  min-height: 36px;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  padding: 0 12px;
+  background: rgba(7, 8, 9, 0.76);
+  color: #8e989e;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+}
+
+.vacuumViewerStatus i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #687279;
+}
+
+.vacuumViewerStatus.ready i {
+  background: #ff2a19;
+  box-shadow: 0 0 16px rgba(255, 42, 25, 0.8);
+}
+
+.vacuumToolButton {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 3px;
+  background: rgba(7, 8, 9, 0.78);
+  color: #eef2f4;
+  font-size: 17px;
+  line-height: 1;
+  cursor: pointer;
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  transition: border-color 180ms ease, background 180ms ease, color 180ms ease;
+}
+
+.vacuumToolButton:hover,
+.vacuumToolButton:focus-visible {
+  border-color: #ff2a19;
+  background: rgba(255, 42, 25, 0.14);
+  color: #ff5a4c;
+}
+
+.vacuumViewerLoading {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 16px;
+  background: #090b0d;
+  color: #7f898f;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+}
+
+.vacuumViewerLoading span {
+  width: 38px;
+  height: 2px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.vacuumViewerLoading span::after {
+  display: block;
+  width: 48%;
+  height: 100%;
+  content: "";
+  background: #ff2a19;
+  animation: vacuumLoading 900ms ease-in-out infinite alternate;
+}
+
+.vacuumViewerLoading p {
+  margin: 0;
+}
+
+@keyframes vacuumLoading {
+  from { transform: translateX(-105%); }
+  to { transform: translateX(210%); }
+}
+
+.vacuumViewerShell:fullscreen,
+.vacuumViewerShell.isFallbackFullscreen {
+  width: 100vw;
+  height: 100vh;
+  border: 0;
+  border-radius: 0;
+  background: #050607;
+}
+
+.vacuumViewerShell.isFallbackFullscreen {
+  position: fixed;
+  inset: 0;
+  z-index: 20000;
+}
+
+body.vacuumFullscreenOpen {
+  overflow: hidden;
+}
+
+@media (max-width: 980px) {
+  .vacuumProject {
+    padding: 24px;
+  }
+
+  .vacuumProjectHeader {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .vacuumViewerShell {
+    height: clamp(640px, 80vh, 820px);
+  }
+}
+
+@media (max-width: 620px) {
+  .vacuumProject {
+    gap: 22px;
+    padding: 18px;
+  }
+
+  .vacuumProjectIdentity .projectIndex {
+    margin-bottom: 24px;
+  }
+
+  .vacuumProjectIdentity h3 {
+    font-size: clamp(36px, 12vw, 54px);
+  }
+
+  .vacuumProjectSummary > p:not(.vacuumProjectRole) {
+    font-size: 15px;
+  }
+
+  .vacuumViewerShell {
+    height: min(86vh, 760px);
+    min-height: 720px;
+  }
+
+  .vacuumEvidence {
+    grid-template-columns: 1fr;
+  }
+
+  .vacuumViewerToolbar {
+    top: 10px;
+    right: 10px;
+  }
+
+  .vacuumViewerStatus {
+    display: none;
+  }
+
+  .vacuumToolButton {
+    width: 34px;
+    height: 34px;
+  }
+}
